@@ -1,29 +1,17 @@
-const typingText = "Senior Data Engineer | Cloud Data Architect";
-let i = 0;
+const faders = document.querySelectorAll(".fade-in");
 
-function typeWriter() {
-  if (i < typingText.length) {
-    document.querySelector(".typing").innerHTML += typingText.charAt(i);
-    i++;
-    setTimeout(typeWriter, 60);
-  }
-}
-typeWriter();
+const appearOptions = {
+  threshold: 0.2
+};
 
-const counters = document.querySelectorAll('.counter');
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("visible");
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
 
-counters.forEach(counter => {
-  const update = () => {
-    const target = +counter.getAttribute('data-target');
-    const count = +counter.innerText;
-    const increment = target / 100;
-
-    if (count < target) {
-      counter.innerText = Math.ceil(count + increment);
-      setTimeout(update, 20);
-    } else {
-      counter.innerText = target;
-    }
-  };
-  update();
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
 });
