@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  scroll-behavior: smooth;
+}
+
+.section {
+  padding: 100px 15%;
+  min-height: 100vh;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 { font-size: 48px; }
+h2 { color: #38bdf8; margin-bottom: 20px; }
+
+.metrics {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.metric h3 {
+  font-size: 36px;
+  color: #22d3ee;
+}
+
+.cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  width: 280px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+}
+
+.side-nav {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.side-nav a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #334155;
+  margin: 15px 0;
+  border-radius: 50%;
+}
+
+.side-nav a:hover {
+  background: #38bdf8;
+}
