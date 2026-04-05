@@ -530,7 +530,7 @@ footer {
 }
 
 /* Mobile */
-@media (max-width: 520px) {
+@media (max-width: 768px) {
   nav { padding: .85rem 1.2rem; }
   .nav-links { gap: .8rem; }
   .nav-links a { font-size: .58rem; letter-spacing: .06em; }
@@ -545,11 +545,10 @@ footer {
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 
   .stack-box { display: none; }
-  .pipeline-box { display: none; } /* Hide tech stack + pipeline on mobile */
-  .tech-spec-grid { display: none; } /* Hide repeating spec cards in About on mobile */
+  .pipeline-box { display: none; }
 
   section { padding: 3.5rem 1.2rem; }
-  .tech-spec-grid { grid-template-columns: 1fr; }
+  .tech-spec-grid { display: none; }
   .projects-grid { grid-template-columns: 1fr; }
   .ach-grid { grid-template-columns: 1fr 1fr; }
   .certs-grid { grid-template-columns: 1fr; }
@@ -605,8 +604,7 @@ footer {
       </h1>
 
       <p class="hero-subtitle">
-        Data Lake Architect · AWS Serverless · Apache Iceberg<br/>
-        Lake Formation · PySpark · Data Governance
+        Data Lake Architect · AWS Serverless · Apache Iceberg · Lake Formation · PySpark · Data Governance
       </p>
 
       <p class="hero-desc">
