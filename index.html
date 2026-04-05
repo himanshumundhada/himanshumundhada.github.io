@@ -516,7 +516,7 @@ footer {
 
   #hero { padding: 6rem 1.5rem 3rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero-right { order: 1; } /* Name/left stays first, chips below */
+  .hero-right { order: -1; } /* Stack chips above name on tablet */
   h1.hero-name { font-size: clamp(2.8rem, 9vw, 4.5rem); }
   .hero-desc { max-width: 100%; }
 
@@ -537,19 +537,14 @@ footer {
 
   #hero { padding: 5.5rem 1.2rem 2.5rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-right { order: 1; }
+  .hero-right { order: -1; }
   h1.hero-name { font-size: clamp(2.6rem, 11vw, 3.5rem); }
   .hero-stats { gap: 1.5rem; }
   .stat-num { font-size: 1.7rem; }
   .hero-ctas { flex-direction: column; }
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 
-  /* Pipeline box — show on mobile, scroll horizontally */
-  .pipeline-box { display: block; }
-  .pipe-flow { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .pipe-flow::-webkit-scrollbar { display: none; }
-  .pipe-node { min-width: 60px; }
-  .pipe-arrow { font-size: .65rem; }
+  .pipeline-box { display: none; } /* Hide pipeline strip on small phones — too cramped */
 
   section { padding: 3.5rem 1.2rem; }
   .tech-spec-grid { grid-template-columns: 1fr; }
@@ -1165,9 +1160,9 @@ footer {
     <div class="contact-desc fade-up">
       <p>Open to <strong>Senior Data Engineer, Data Architect, and Cloud Data Platform</strong> roles where I can contribute to building scalable, governed data lake infrastructure on AWS. Whether it's designing a Medallion architecture, modernising pipelines to open table formats, or establishing a governance-first data culture — let's talk.</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#e088898d818e9388958d958e8488818481d1d6a0878d81898cce838f8d" class="contact-link">
+        <a href="mailto:himanshumundhada16@gmail.com" class="contact-link">
           <span class="cl-icon">✉️</span>
-          <div><span class="cl-type">Email</span><span class="cl-val"><span class="__cf_email__" data-cfemail="f39b9a9e929d809b869e869d979b929792c2c5b3949e929a9fdd909c9e">[email&#160;protected]</span></span></div>
+          <div><span class="cl-type">Email</span><span class="cl-val">himanshumundhada16@gmail.com</span></div>
         </a>
         <a href="tel:+918871667752" class="contact-link">
           <span class="cl-icon">📱</span>
@@ -1202,7 +1197,7 @@ footer {
   <div class="footer-text">Senior Data Engineer · <span>4.5 Years</span> · AWS-Native Data Lake Platforms</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ─ Scroll reveal
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
@@ -1259,4 +1254,13 @@ const links = document.querySelectorAll('.nav-links a');
 const navObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      l
+      links.forEach(a=>a.classList.remove('active'));
+      const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:.4});
+sections.forEach(s=>navObs.observe(s));
+</script>
+</body>
+</html>
