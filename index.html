@@ -139,7 +139,7 @@ nav {
   position: relative; z-index: 1;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
 }
@@ -516,6 +516,7 @@ footer {
 
   #hero { padding: 6rem 1.5rem 3rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-right { order: -1; } /* Stack chips above name on tablet */
   h1.hero-name { font-size: clamp(2.8rem, 9vw, 4.5rem); }
   .hero-desc { max-width: 100%; }
 
@@ -536,12 +537,15 @@ footer {
 
   #hero { padding: 5.5rem 1.2rem 2.5rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-right { order: -1; }
   h1.hero-name { font-size: clamp(2.6rem, 11vw, 3.5rem); }
   .hero-stats { gap: 1.5rem; }
   .stat-num { font-size: 1.7rem; }
   .hero-ctas { flex-direction: column; }
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 
+  .pipeline-box { display: none; } /* Hide pipeline strip on small phones — too cramped */
+  .tech-spec-grid { display: none; } /* Hide repeating spec cards in About on mobile */
 
   section { padding: 3.5rem 1.2rem; }
   .tech-spec-grid { grid-template-columns: 1fr; }
@@ -634,6 +638,51 @@ footer {
       </div>
     </div>
 
+    <!-- RIGHT — tech chips + pipeline -->
+    <div class="hero-right">
+      <div class="stack-box">
+        <div class="stack-box-label">Tech Stack</div>
+        <div class="stack-chips">
+          <span class="chip hot">AWS Lake Formation</span>
+          <span class="chip hot">Apache Iceberg</span>
+          <span class="chip hot">Amazon S3 Tables</span>
+          <span class="chip">AWS Glue</span>
+          <span class="chip">PySpark</span>
+          <span class="chip">Amazon Macie</span>
+          <span class="chip">AWS Clean Rooms</span>
+          <span class="chip">Amazon Redshift</span>
+          <span class="chip">AWS Lambda</span>
+          <span class="chip">Step Functions</span>
+          <span class="chip">Amazon Kinesis</span>
+          <span class="chip hot">AWS Kiro</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">ADOT</span>
+          <span class="chip">SageMaker Unified Studio</span>
+          <span class="chip">Amazon DynamoDB</span>
+          <span class="chip">Amazon Athena</span>
+          <span class="chip">AWS CloudFormation</span>
+        </div>
+      </div>
+
+      <div class="pipeline-box">
+        <div class="pipeline-box-label">Data platform architecture</div>
+        <div class="pipe-flow">
+          <div class="pipe-node"><span class="pipe-icon">🌊</span><div class="pipe-name">Ingest</div><div class="pipe-sub">Kinesis·SQS</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">λ</span><div class="pipe-name">Trigger</div><div class="pipe-sub">Lambda·SFN</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">⚙️</span><div class="pipe-name">Transform</div><div class="pipe-sub">Glue·Spark</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🗄️</span><div class="pipe-name">RAW</div><div class="pipe-sub">Iceberg·S3T</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🔍</span><div class="pipe-name">Explore</div><div class="pipe-sub">Athena</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">✨</span><div class="pipe-name">Curated</div><div class="pipe-sub">Redshift</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🏛️</span><div class="pipe-name">Govern</div><div class="pipe-sub">LF·Macie</div></div>
+        </div>
+      </div>
+    </div>
 
   </div><!-- end hero-inner -->
 </section>
