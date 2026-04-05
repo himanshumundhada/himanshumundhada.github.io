@@ -8,292 +8,562 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --bg:#030d0e;--bg2:#050f11;--surface:#071518;--surface2:#0a1c20;
-  --border:rgba(0,210,200,.1);--border2:rgba(0,210,200,.24);
-  --accent:#00d2c8;--accent2:#00ffee;--accent3:#ff6b4a;--accent4:#7df9ff;
-  --text:#dff5f4;--text-muted:#7aacaa;--text-dim:#2d5855;
-  --glow:rgba(0,210,200,.18);--glow2:rgba(0,210,200,.08);
-  --font-head:'Bricolage Grotesque',sans-serif;
-  --font-mono:'JetBrains Mono',monospace;
-  --font-body:'Figtree',sans-serif;
+/* ══════════════════════════════════════════
+   ELECTRIC BLUE / INDIGO THEME
+══════════════════════════════════════════ */
+:root {
+  --bg:        #06070f;
+  --bg2:       #080a14;
+  --surface:   #0c0f1e;
+  --surface2:  #111428;
+  --border:    rgba(99,130,255,0.12);
+  --border2:   rgba(99,130,255,0.28);
+  --accent:    #6382ff;
+  --accent2:   #a5b4fc;
+  --accent3:   #38bdf8;
+  --hot:       #818cf8;
+  --text:      #e8eaf6;
+  --text-muted:#8890b8;
+  --text-dim:  #2e3460;
+  --glow:      rgba(99,130,255,0.2);
+  --glow2:     rgba(99,130,255,0.09);
+  --font-head: 'Bricolage Grotesque', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Figtree', sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.2;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
 
-/* ═══ NAV ═══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;justify-content:space-between;align-items:center;padding:1rem 3.5rem;background:rgba(3,13,14,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:var(--font-head);font-weight:800;font-size:1.2rem;color:var(--accent);text-decoration:none;letter-spacing:-.02em;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--text-muted);text-decoration:none;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent2);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
-.nav-links a:hover,.nav-links a.active{color:var(--accent2);}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-/* ═══ HERO — DATA PIPELINE THEME ═══ */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 3.5rem 3rem;position:relative;overflow:hidden;background:var(--bg);}
+/* ─── NOISE LAYER ─── */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
 
-/* Animated flowing data stream background */
-.hero-canvas-bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
+/* ═══════════════════ NAV ═══════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(6,7,15,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-head); font-weight: 800; font-size: 1.2rem;
+  color: var(--accent); text-decoration: none; letter-spacing: -.02em;
+}
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-family: var(--font-mono); font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase; transition: color .2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--accent2); transform: scaleX(0);
+  transition: transform .25s; transform-origin: left;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent2); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-/* Subtle grid */
-.hero-grid{position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(0,210,200,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,200,.04) 1px,transparent 1px);
-  background-size:52px 52px;
-  mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 0%,transparent 100%);
-  animation:gridDrift 24s linear infinite;}
-@keyframes gridDrift{0%{background-position:0 0,0 0;}100%{background-position:52px 52px,52px 52px;}}
+/* ═══════════════════ HERO ═══════════════════ */
+#hero {
+  min-height: 100vh;
+  padding: 7rem 3rem 4rem;
+  position: relative; overflow: hidden;
+  background: var(--bg);
+  display: flex; align-items: center;
+}
+
+/* Subtle grid — only hero */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(99,130,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,130,255,.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%);
+  animation: gridDrift 24s linear infinite;
+}
+@keyframes gridDrift { 0%{background-position:0 0,0 0;} 100%{background-position:52px 52px,52px 52px;} }
 
 /* Orbs */
-.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;}
-.orb-1{width:800px;height:800px;background:rgba(0,210,200,.06);top:-200px;right:-150px;animation:orbF 14s ease-in-out infinite alternate;}
-.orb-2{width:600px;height:600px;background:rgba(0,255,238,.04);bottom:-100px;left:-100px;animation:orbF 18s ease-in-out infinite alternate-reverse;}
-.orb-3{width:300px;height:300px;background:rgba(255,107,74,.04);top:25%;left:35%;animation:orbF 11s ease-in-out infinite alternate;}
-@keyframes orbF{from{transform:translateY(0) scale(1);}to{transform:translateY(35px) scale(1.06);}}
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+.orb-1 { width: 700px; height: 700px; background: rgba(99,130,255,.07); top: -180px; right: -100px; animation: orbF 14s ease-in-out infinite alternate; }
+.orb-2 { width: 500px; height: 500px; background: rgba(129,140,248,.05); bottom: -80px; left: -80px; animation: orbF 18s ease-in-out infinite alternate-reverse; }
+.orb-3 { width: 280px; height: 280px; background: rgba(56,189,248,.04); top: 30%; left: 40%; animation: orbF 11s ease-in-out infinite alternate; }
+@keyframes orbF { from{transform:translateY(0) scale(1);} to{transform:translateY(32px) scale(1.05);} }
 
-/* Streaming data lines — pure CSS */
-.stream-lines{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.stream-line{position:absolute;top:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent 0%,rgba(0,210,200,.25) 40%,rgba(0,255,238,.4) 50%,rgba(0,210,200,.25) 60%,transparent 100%);animation:streamDown linear infinite;}
-@keyframes streamDown{0%{transform:translateY(-100%);opacity:0;}10%{opacity:1;}90%{opacity:.8;}100%{transform:translateY(100%);opacity:0;}}
-.sl-1{left:8%;animation-duration:6s;animation-delay:0s;}
-.sl-2{left:15%;animation-duration:9s;animation-delay:1.5s;opacity:.4;}
-.sl-3{left:24%;animation-duration:7s;animation-delay:3s;opacity:.3;}
-.sl-4{left:72%;animation-duration:8s;animation-delay:.8s;opacity:.5;}
-.sl-5{left:83%;animation-duration:5.5s;animation-delay:2.2s;opacity:.35;}
-.sl-6{left:91%;animation-duration:10s;animation-delay:4s;opacity:.25;}
-.sl-7{left:60%;animation-duration:7.5s;animation-delay:1s;opacity:.2;}
+/* Data stream lines — very subtle */
+.stream-lines { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.stream-line {
+  position: absolute; top: 0; width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(99,130,255,.07) 40%, rgba(165,180,252,.1) 50%, rgba(99,130,255,.07) 60%, transparent 100%);
+  animation: streamDown linear infinite;
+}
+@keyframes streamDown { 0%{transform:translateY(-100%);opacity:0;} 10%{opacity:1;} 90%{opacity:.6;} 100%{transform:translateY(100%);opacity:0;} }
+.sl-1{left:7%;animation-duration:7s;animation-delay:0s;}
+.sl-2{left:18%;animation-duration:10s;animation-delay:2s;opacity:.3;}
+.sl-3{left:70%;animation-duration:8s;animation-delay:.5s;opacity:.3;}
+.sl-4{left:82%;animation-duration:6s;animation-delay:3s;opacity:.25;}
+.sl-5{left:91%;animation-duration:11s;animation-delay:5s;opacity:.2;}
 
-/* Floating data packets */
-.data-packet{position:absolute;font-family:var(--font-mono);font-size:.6rem;color:rgba(0,210,200,.35);white-space:nowrap;animation:packetFloat linear infinite;pointer-events:none;z-index:0;}
-@keyframes packetFloat{0%{transform:translateY(110vh);opacity:0;}5%{opacity:1;}90%{opacity:.4;}100%{transform:translateY(-10vh);opacity:0;}}
-.dp-1{right:5%;animation-duration:14s;animation-delay:0s;}
-.dp-2{right:12%;animation-duration:18s;animation-delay:3s;color:rgba(0,255,238,.25);}
-.dp-3{right:20%;animation-duration:12s;animation-delay:7s;}
-.dp-4{left:3%;animation-duration:16s;animation-delay:1s;color:rgba(0,210,200,.2);}
-.dp-5{left:28%;animation-duration:20s;animation-delay:5s;opacity:.3;}
+/* Floating code snippets — far right only, won't overlap content */
+.data-packet {
+  position: absolute; right: 1.5rem;
+  font-family: var(--font-mono); font-size: .55rem;
+  color: rgba(99,130,255,.2); white-space: nowrap;
+  animation: packetFloat linear infinite; pointer-events: none; z-index: 0;
+  line-height: 1.6;
+}
+@keyframes packetFloat { 0%{transform:translateY(110vh);opacity:0;} 5%{opacity:1;} 88%{opacity:.3;} 100%{transform:translateY(-10vh);opacity:0;} }
+.dp-1{animation-duration:16s;animation-delay:0s;}
+.dp-2{animation-duration:20s;animation-delay:5s;color:rgba(165,180,252,.15);}
+.dp-3{animation-duration:14s;animation-delay:9s;}
 
-.hero-content{position:relative;z-index:1;max-width:900px;}
+/* ─── HERO INNER LAYOUT ─── */
+.hero-inner {
+  position: relative; z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
 
-/* Terminal-style top tag */
-.hero-terminal-tag{display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,0,0,.5);border:1px solid rgba(0,210,200,.3);border-radius:6px;padding:.4rem 1rem;font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.06em;margin-bottom:2rem;animation:fadeUp .6s ease both;}
-.terminal-prompt{color:var(--accent2);}
-.terminal-cursor{display:inline-block;width:7px;height:.85em;background:var(--accent2);animation:blink .8s step-end infinite;margin-left:2px;vertical-align:text-bottom;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+/* ─── HERO LEFT ─── */
+.hero-left { display: flex; flex-direction: column; }
 
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.5);}}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(99,130,255,.08); border: 1px solid rgba(99,130,255,.3);
+  border-radius: 100px; padding: .35rem 1rem;
+  font-family: var(--font-mono); font-size: .68rem;
+  color: var(--accent2); letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  animation: fadeUp .5s ease both;
+  width: fit-content;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(1.5);} }
 
-h1.hero-name{font-family:var(--font-head);font-weight:800;font-size:clamp(3rem,7.5vw,6.2rem);line-height:.95;letter-spacing:-.04em;margin-bottom:.8rem;animation:fadeUp .6s .1s ease both;}
-h1.hero-name .teal{color:var(--accent);}
+h1.hero-name {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: clamp(3rem, 6.5vw, 5.8rem);
+  line-height: .95; letter-spacing: -.04em;
+  margin-bottom: 1rem;
+  animation: fadeUp .5s .1s ease both;
+}
+h1.hero-name .accent { color: var(--accent); }
 
-.hero-title{font-family:var(--font-mono);font-size:clamp(.85rem,1.8vw,1rem);color:var(--accent2);letter-spacing:.06em;margin-bottom:1.6rem;animation:fadeUp .6s .2s ease both;}
+.hero-subtitle {
+  font-family: var(--font-mono); font-size: clamp(.75rem, 1.4vw, .9rem);
+  color: var(--accent2); letter-spacing: .05em;
+  margin-bottom: 1.4rem;
+  animation: fadeUp .5s .15s ease both;
+  line-height: 1.6;
+}
 
-/* Tech stack chips on hero */
-.hero-stack{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem;animation:fadeUp .6s .25s ease both;}
-.stack-chip{font-family:var(--font-mono);font-size:.62rem;padding:.25rem .7rem;border-radius:5px;border:1px solid rgba(0,210,200,.2);background:rgba(0,210,200,.05);color:rgba(0,210,200,.8);letter-spacing:.04em;transition:all .2s;}
-.stack-chip:hover{background:rgba(0,210,200,.12);border-color:var(--accent);color:var(--accent2);}
-.stack-chip.hot{border-color:rgba(0,255,238,.35);color:var(--accent2);background:rgba(0,255,238,.06);}
+.hero-desc {
+  font-size: clamp(.9rem, 1.5vw, 1rem); color: var(--text-muted);
+  max-width: 520px; line-height: 1.82; margin-bottom: 2rem;
+  animation: fadeUp .5s .2s ease both;
+}
+.hero-desc strong { color: var(--text); }
 
-.hero-desc{font-size:1rem;color:var(--text-muted);max-width:640px;line-height:1.85;margin-bottom:2rem;animation:fadeUp .6s .3s ease both;}
-.hero-desc strong{color:var(--text);}
+.hero-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  margin-bottom: 2rem; animation: fadeUp .5s .25s ease both;
+}
+.stat-num {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: clamp(1.7rem, 3vw, 2.2rem); color: var(--text);
+  line-height: 1; letter-spacing: -.03em;
+}
+.stat-num em { color: var(--accent); font-style: normal; }
+.stat-label {
+  font-family: var(--font-mono); font-size: .62rem;
+  color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: .1em; margin-top: .2rem;
+}
 
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;margin-bottom:2.2rem;animation:fadeUp .6s .4s ease both;}
-.stat .stat-num{font-family:var(--font-head);font-weight:800;font-size:2.2rem;color:var(--text);line-height:1;letter-spacing:-.03em;}
-.stat .stat-num em{color:var(--accent);font-style:normal;}
-.stat .stat-label{font-family:var(--font-mono);font-size:.66rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;}
+.hero-ctas {
+  display: flex; gap: .9rem; flex-wrap: wrap;
+  animation: fadeUp .5s .3s ease both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--accent); color: #fff;
+  padding: .75rem 1.6rem; border-radius: 7px;
+  text-decoration: none; font-weight: 700; font-size: .85rem;
+  transition: all .2s; border: none; cursor: pointer; font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--hot); transform: translateY(-2px); box-shadow: 0 10px 28px var(--glow); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: transparent; color: var(--text-muted);
+  padding: .75rem 1.6rem; border-radius: 7px;
+  text-decoration: none; font-weight: 500; font-size: .85rem;
+  border: 1px solid var(--border2); transition: all .2s; cursor: pointer; font-family: var(--font-body);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .6s .5s ease both;}
-.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#020e0f;padding:.75rem 1.7rem;border-radius:7px;text-decoration:none;font-weight:700;font-size:.88rem;transition:all .2s;border:none;cursor:pointer;font-family:var(--font-body);}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 28px var(--glow);}
-.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--text-muted);padding:.75rem 1.7rem;border-radius:7px;text-decoration:none;font-weight:500;font-size:.88rem;border:1px solid var(--border2);transition:all .2s;cursor:pointer;font-family:var(--font-body);}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+/* ─── HERO RIGHT ─── */
+.hero-right {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  animation: fadeUp .5s .35s ease both;
+}
 
-/* Mini live pipeline strip at bottom of hero */
-.hero-pipeline-strip{position:relative;z-index:1;margin-top:3rem;animation:fadeUp .6s .65s ease both;}
-.pipeline-strip-label{font-family:var(--font-mono);font-size:.65rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;}
-.pipeline-strip{display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:.4rem;}
-.ps-node{background:rgba(7,21,24,.8);border:1px solid rgba(0,210,200,.18);border-radius:8px;padding:.55rem .9rem;text-align:center;min-width:90px;flex-shrink:0;transition:all .25s;cursor:default;backdrop-filter:blur(8px);}
-.ps-node:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px var(--glow2);}
-.ps-icon{font-size:1.1rem;display:block;margin-bottom:.2rem;}
-.ps-name{font-family:var(--font-mono);font-size:.58rem;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;}
-.ps-sub{font-size:.56rem;color:var(--text-dim);margin-top:.1rem;}
-.ps-arrow{color:var(--text-dim);font-size:.9rem;padding:0 .2rem;flex-shrink:0;animation:arrowPulse 2s infinite;}
-@keyframes arrowPulse{0%,100%{opacity:.3;}50%{opacity:1;color:var(--accent);}}
+.stack-box {
+  background: rgba(12,15,30,.7); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.2rem 1.3rem;
+  backdrop-filter: blur(12px);
+}
+.stack-box-label {
+  font-family: var(--font-mono); font-size: .6rem;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: .12em;
+  margin-bottom: .9rem;
+}
+.stack-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip {
+  font-family: var(--font-mono); font-size: .6rem;
+  padding: .22rem .65rem; border-radius: 5px;
+  border: 1px solid rgba(99,130,255,.18);
+  background: rgba(99,130,255,.05);
+  color: var(--text-muted); letter-spacing: .03em;
+  transition: all .2s; cursor: default;
+}
+.chip:hover { background: rgba(99,130,255,.12); border-color: var(--accent); color: var(--accent2); }
+.chip.hot { border-color: rgba(165,180,252,.35); color: var(--accent2); background: rgba(165,180,252,.07); }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.pipeline-box {
+  background: rgba(12,15,30,.7); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.2rem 1.3rem;
+  backdrop-filter: blur(12px);
+}
+.pipeline-box-label {
+  font-family: var(--font-mono); font-size: .6rem;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: .12em;
+  margin-bottom: .9rem;
+}
+.pipe-flow {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem;
+}
+.pipe-node {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 7px; padding: .45rem .7rem; text-align: center;
+  flex-shrink: 0; transition: all .2s; cursor: default; min-width: 68px;
+}
+.pipe-node:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 14px var(--glow2); }
+.pipe-icon { font-size: .95rem; display: block; margin-bottom: .18rem; }
+.pipe-name { font-family: var(--font-mono); font-size: .52rem; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
+.pipe-sub { font-size: .5rem; color: var(--text-dim); margin-top: .08rem; }
+.pipe-arrow { color: var(--text-dim); font-size: .75rem; animation: arrowPulse 2.5s infinite; flex-shrink: 0; }
+@keyframes arrowPulse { 0%,100%{opacity:.2;} 50%{opacity:.8;color:var(--accent);} }
 
-/* ═══ SECTIONS ═══ */
-section{padding:6rem 3.5rem;}
-.section-eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem;}
-.section-num{font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;}
-.section-line{flex:1;max-width:60px;height:1px;background:linear-gradient(to right,rgba(0,210,200,.3),transparent);}
-h2.section-title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:2.5rem;line-height:1.1;}
-h2.section-title span{color:var(--accent);}
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
 
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
-.fade-up.visible{opacity:1;transform:translateY(0);}
-.exp-item{opacity:0;transform:translateX(-18px);transition:all .55s ease;}
-.exp-item.visible{opacity:1;transform:translateX(0);}
+/* ═══════════════════ SHARED SECTION STYLES ═══════════════════ */
+section { padding: 5.5rem 3rem; }
+section:nth-child(even) { background: var(--bg2); }
 
-/* ═══ ABOUT ═══ */
-#about{background:var(--bg2);}
-.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.section-eyebrow { display: flex; align-items: center; gap: .7rem; margin-bottom: .4rem; }
+.section-num { font-family: var(--font-mono); font-size: .65rem; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; }
+.section-line { width: 40px; height: 1px; background: linear-gradient(to right, rgba(99,130,255,.4), transparent); }
+h2.section-title {
+  font-family: var(--font-head); font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 800; letter-spacing: -.03em; margin-bottom: 2.5rem; line-height: 1.1;
+}
+h2.section-title span { color: var(--accent); }
 
-.about-intro{margin-bottom:1.5rem;}
-.about-intro p{color:var(--text-muted);margin-bottom:1.1rem;font-size:.97rem;line-height:1.85;}
-.about-intro strong{color:var(--text);}
-.about-intro code{font-family:var(--font-mono);font-size:.8rem;color:var(--accent2);background:rgba(0,210,200,.07);padding:.1rem .4rem;border-radius:4px;border:1px solid rgba(0,210,200,.15);}
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.exp-item { opacity: 0; transform: translateX(-16px); transition: all .5s ease; }
+.exp-item.visible { opacity: 1; transform: translateX(0); }
 
-/* Tech spec cards */
-.tech-spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.5rem;}
-.tech-spec-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;transition:all .3s;}
-.tech-spec-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 6px 20px var(--glow2);}
-.ts-label{font-family:var(--font-mono);font-size:.6rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;}
-.ts-value{font-family:var(--font-mono);font-size:.78rem;color:var(--accent);font-weight:500;line-height:1.4;}
+/* ═══════════════════ ABOUT ═══════════════════ */
+#about { background: var(--bg2); }
+.about-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.5rem; align-items: start; }
 
-/* Right column: capability cards */
-.capability-cards{display:flex;flex-direction:column;gap:.9rem;}
-.cap-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:all .3s;}
-.cap-card:hover{border-color:var(--border2);transform:translateX(5px);box-shadow:0 4px 20px var(--glow2);}
-.cap-icon{font-size:1.4rem;flex-shrink:0;margin-top:.05rem;}
-.cap-title{font-family:var(--font-head);font-weight:700;font-size:.88rem;color:var(--text);margin-bottom:.25rem;}
-.cap-desc{font-size:.8rem;color:var(--text-muted);line-height:1.55;}
-.cap-desc code{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);background:rgba(0,210,200,.06);padding:.05rem .3rem;border-radius:3px;}
+.about-text p { color: var(--text-muted); margin-bottom: 1.1rem; font-size: .96rem; line-height: 1.85; }
+.about-text strong { color: var(--text); }
+.about-text code {
+  font-family: var(--font-mono); font-size: .78rem; color: var(--accent2);
+  background: rgba(99,130,255,.08); padding: .08rem .38rem;
+  border-radius: 4px; border: 1px solid rgba(99,130,255,.18);
+}
 
-/* ═══ ARCHITECTURE ═══ */
-#architecture{background:var(--bg);}
-.arch-svg-wrap{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:1.5rem 2rem;overflow:hidden;box-shadow:0 0 60px rgba(0,210,200,.05),inset 0 0 40px rgba(0,0,0,.3);position:relative;}
-.arch-svg-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,210,200,.03) 0%,transparent 60%);pointer-events:none;}
-#arch-svg{width:100%;max-width:1020px;display:block;margin:0 auto;}
-.aws-node{cursor:pointer;transition:filter .3s;}
-.aws-node:hover{filter:brightness(1.35) drop-shadow(0 0 14px rgba(0,210,200,.75));}
+.tech-spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.5rem; }
+.ts-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 9px; padding: .9rem 1rem; transition: all .25s;
+}
+.ts-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 5px 18px var(--glow2); }
+.ts-label { font-family: var(--font-mono); font-size: .58rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .35rem; }
+.ts-value { font-family: var(--font-mono); font-size: .75rem; color: var(--accent2); font-weight: 500; line-height: 1.45; }
 
-/* ═══ EXPERIENCE ═══ */
-#experience{background:var(--bg2);}
-.exp-timeline{position:relative;padding-left:2rem;}
-.exp-timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),rgba(0,210,200,.1));}
-.exp-item{position:relative;margin-bottom:3.5rem;padding-left:1.5rem;}
-.exp-item::before{content:'';position:absolute;left:-2.25rem;top:7px;width:11px;height:11px;border-radius:50%;background:var(--accent);border:2.5px solid var(--bg2);box-shadow:0 0 14px var(--accent);}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.25rem;}
-.exp-company{font-family:var(--font-head);font-weight:800;font-size:1.2rem;color:var(--accent);display:flex;align-items:center;gap:.5rem;}
-.current-badge{font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:#020e0f;background:var(--accent2);padding:.18rem .6rem;border-radius:100px;}
-.exp-role{font-weight:600;font-size:1rem;color:var(--text);margin-bottom:.2rem;}
-.exp-date{font-family:var(--font-mono);font-size:.68rem;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:.25rem .8rem;border-radius:100px;white-space:nowrap;}
-.exp-location{font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);margin-bottom:.9rem;}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
-.exp-bullets li{font-size:.91rem;color:var(--text-muted);padding-left:1.3rem;position:relative;line-height:1.65;}
-.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:.68rem;top:.28em;}
-.exp-bullets li strong{color:var(--text);}
-.exp-bullets li code{font-family:var(--font-mono);font-size:.76rem;color:var(--accent2);background:rgba(0,210,200,.06);padding:.05rem .35rem;border-radius:3px;border:1px solid rgba(0,210,200,.12);}
-.exp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
-.tag{font-family:var(--font-mono);font-size:.6rem;color:var(--accent);background:rgba(0,210,200,.07);border:1px solid rgba(0,210,200,.18);padding:.2rem .65rem;border-radius:100px;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;}
-.tag:hover{background:rgba(0,210,200,.14);border-color:var(--accent);}
+.cap-cards { display: flex; flex-direction: column; gap: .85rem; }
+.cap-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1rem 1.2rem;
+  display: flex; gap: .85rem; align-items: flex-start; transition: all .3s;
+}
+.cap-card:hover { border-color: var(--border2); transform: translateX(4px); box-shadow: 0 4px 18px var(--glow2); }
+.cap-icon { font-size: 1.35rem; flex-shrink: 0; }
+.cap-title { font-family: var(--font-head); font-weight: 700; font-size: .87rem; color: var(--text); margin-bottom: .2rem; }
+.cap-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.55; }
+.cap-desc code { font-family: var(--font-mono); font-size: .7rem; color: var(--accent2); background: rgba(99,130,255,.07); padding: .04rem .28rem; border-radius: 3px; border: 1px solid rgba(99,130,255,.15); }
 
-/* ═══ SKILLS ═══ */
-#skills{background:var(--bg);}
-.skills-layout{display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:start;}
-.skills-groups{display:flex;flex-direction:column;gap:1.1rem;}
-.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.3rem 1.5rem;transition:all .3s;}
-.skill-group:hover{border-color:var(--border2);box-shadow:0 5px 24px var(--glow2);}
-.sg-title{font-family:var(--font-mono);font-size:.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
-.skill-tag{background:rgba(0,210,200,.05);border:1px solid var(--border);color:var(--text-muted);font-family:var(--font-mono);font-size:.68rem;padding:.25rem .7rem;border-radius:6px;transition:all .2s;cursor:default;}
-.skill-tag:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,210,200,.08);}
+/* ═══════════════════ ARCHITECTURE ═══════════════════ */
+#architecture { background: var(--bg); }
+.arch-wrap {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 18px; padding: 1.5rem 1.8rem; overflow: hidden;
+  box-shadow: 0 0 60px rgba(99,130,255,.05), inset 0 0 40px rgba(0,0,0,.25);
+  position: relative;
+}
+.arch-wrap::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(99,130,255,.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+#arch-svg { width: 100%; max-width: 1020px; display: block; margin: 0 auto; }
+.aws-node { cursor: pointer; transition: filter .3s; }
+.aws-node:hover { filter: brightness(1.35) drop-shadow(0 0 12px rgba(99,130,255,.7)); }
 
-/* Skill bars chart */
-.skill-bars-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:sticky;top:7rem;}
-.sb-title{font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.12em;text-align:center;margin-bottom:1.4rem;}
-.skill-bar-item{margin-bottom:1rem;}
-.sb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem;}
-.sb-name{font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted);}
-.sb-pct{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);}
-.sb-track{height:6px;background:rgba(0,210,200,.08);border-radius:100px;overflow:hidden;}
-.sb-fill{height:100%;border-radius:100px;background:linear-gradient(to right,var(--accent),var(--accent2));width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
-.sb-fill.animate{/* width set by JS */}
+/* ═══════════════════ EXPERIENCE ═══════════════════ */
+#experience { background: var(--bg2); }
+.exp-timeline { position: relative; padding-left: 2rem; }
+.exp-timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2), rgba(99,130,255,.1));
+}
+.exp-item { position: relative; margin-bottom: 3.2rem; padding-left: 1.5rem; }
+.exp-item::before {
+  content: ''; position: absolute; left: -2.2rem; top: 7px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--accent); border: 2.5px solid var(--bg2); box-shadow: 0 0 12px var(--accent);
+}
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; margin-bottom: .2rem; }
+.exp-company { font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; color: var(--accent); display: flex; align-items: center; gap: .5rem; }
+.current-badge { font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .1em; color: #fff; background: var(--accent); padding: .18rem .6rem; border-radius: 100px; }
+.exp-role { font-weight: 600; font-size: .97rem; color: var(--text); margin-bottom: .18rem; }
+.exp-date { font-family: var(--font-mono); font-size: .67rem; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); padding: .22rem .75rem; border-radius: 100px; white-space: nowrap; }
+.exp-loc { font-family: var(--font-mono); font-size: .65rem; color: var(--text-dim); margin-bottom: .85rem; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.exp-bullets li { font-size: .9rem; color: var(--text-muted); padding-left: 1.2rem; position: relative; line-height: 1.65; }
+.exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: .65rem; top: .3em; }
+.exp-bullets li strong { color: var(--text); }
+.exp-bullets li code { font-family: var(--font-mono); font-size: .73rem; color: var(--accent2); background: rgba(99,130,255,.07); padding: .04rem .3rem; border-radius: 3px; border: 1px solid rgba(99,130,255,.15); }
+.exp-tags { display: flex; flex-wrap: wrap; gap: .38rem; margin-top: .85rem; }
+.tag { font-family: var(--font-mono); font-size: .58rem; color: var(--accent); background: rgba(99,130,255,.07); border: 1px solid rgba(99,130,255,.18); padding: .18rem .62rem; border-radius: 100px; letter-spacing: .04em; text-transform: uppercase; transition: all .2s; }
+.tag:hover { background: rgba(99,130,255,.14); border-color: var(--accent); }
 
-/* ═══ PROJECTS ═══ */
-#projects{background:var(--bg2);}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.4rem;}
-.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.7rem;transition:all .3s;position:relative;overflow:hidden;}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s;}
-.project-card:hover{border-color:rgba(0,210,200,.3);transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,210,200,.09);}
-.project-card:hover::before{opacity:1;}
-.project-header{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:1rem;}
-.project-icon{font-size:1.8rem;flex-shrink:0;}
-.project-name{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--text);line-height:1.2;margin-bottom:.25rem;}
-.project-type{font-family:var(--font-mono);font-size:.62rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;}
-.project-desc{font-size:.86rem;color:var(--text-muted);line-height:1.7;margin-bottom:.9rem;}
-.project-desc code{font-family:var(--font-mono);font-size:.75rem;color:var(--accent2);background:rgba(0,210,200,.06);padding:.05rem .3rem;border-radius:3px;}
-.project-impact{background:rgba(0,210,200,.05);border:1px solid rgba(0,210,200,.12);border-radius:8px;padding:.7rem .9rem;margin-bottom:.9rem;}
-.impact-label{font-family:var(--font-mono);font-size:.6rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem;}
-.impact-items{display:flex;flex-direction:column;gap:.25rem;}
-.impact-item{font-size:.78rem;color:var(--text-muted);display:flex;align-items:flex-start;gap:.4rem;}
-.impact-item::before{content:'→';color:var(--accent);font-size:.7rem;flex-shrink:0;margin-top:.1em;}
+/* ═══════════════════ SKILLS ═══════════════════ */
+#skills { background: var(--bg); }
+.skills-layout { display: grid; grid-template-columns: 1fr 360px; gap: 2.5rem; align-items: start; }
+.skill-groups { display: flex; flex-direction: column; gap: 1rem; }
+.sg {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.2rem 1.4rem; transition: all .3s;
+}
+.sg:hover { border-color: var(--border2); box-shadow: 0 5px 22px var(--glow2); }
+.sg-title { font-family: var(--font-mono); font-size: .67rem; color: var(--accent2); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .85rem; }
+.sg-chips { display: flex; flex-wrap: wrap; gap: .38rem; }
+.sc {
+  background: rgba(99,130,255,.05); border: 1px solid var(--border);
+  color: var(--text-muted); font-family: var(--font-mono); font-size: .67rem;
+  padding: .22rem .68rem; border-radius: 6px; transition: all .2s; cursor: default;
+}
+.sc:hover { border-color: var(--accent); color: var(--accent2); background: rgba(99,130,255,.1); }
 
-/* ═══ ACHIEVEMENTS ═══ */
-#achievements{background:var(--bg);}
-.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:.9rem;margin-bottom:2.5rem;}
-.ach-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-align:center;transition:all .3s;position:relative;overflow:hidden;}
-.ach-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,210,200,.07),transparent 70%);pointer-events:none;}
-.ach-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 8px 28px var(--glow2);}
-.ach-num{font-family:var(--font-head);font-weight:800;font-size:2rem;color:var(--accent);display:block;letter-spacing:-.03em;}
-.ach-label{font-size:.78rem;color:var(--text-muted);margin-top:.3rem;line-height:1.4;}
-.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem;}
-.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1.1rem 1.3rem;display:flex;align-items:center;gap:.9rem;transition:all .3s;}
-.cert-card:hover{border-color:var(--border2);transform:translateX(5px);}
-.cert-icon{font-size:1.7rem;flex-shrink:0;}
-.cert-name{font-weight:600;font-size:.88rem;color:var(--text);}
-.cert-issuer{font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);margin-top:.12rem;}
+/* Dot matrix */
+.dot-wrap {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.4rem; position: sticky; top: 7rem;
+}
+.dot-title { font-family: var(--font-mono); font-size: .65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .12em; text-align: center; margin-bottom: 1.3rem; }
+.dm-item { margin-bottom: 1rem; }
+.dm-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .38rem; }
+.dm-name { font-family: var(--font-mono); font-size: .68rem; color: var(--text-muted); }
+.dm-level { font-family: var(--font-mono); font-size: .58rem; color: var(--text-dim); letter-spacing: .05em; }
+.dm-dots { display: flex; gap: 3px; }
+.dm-dot {
+  width: 22px; height: 8px; border-radius: 2px;
+  border: 1px solid rgba(99,130,255,.18);
+  background: rgba(99,130,255,.04);
+  transition: background .3s, border-color .3s, box-shadow .3s;
+}
+.dm-dot.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(99,130,255,.45);
+}
+.dm-dot.on.bright {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  box-shadow: 0 0 8px rgba(165,180,252,.5);
+}
+.dm-legend {
+  display: flex; align-items: center; gap: .9rem; justify-content: center;
+  margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border);
+}
+.dm-legend-item { display: flex; align-items: center; gap: .38rem; font-family: var(--font-mono); font-size: .58rem; color: var(--text-dim); }
+.dm-legend-dot { width: 14px; height: 6px; border-radius: 2px; }
 
-/* ═══ CONTACT ═══ */
-#contact{background:var(--bg2);}
-.contact-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start;}
-.contact-desc p{color:var(--text-muted);margin-bottom:1.8rem;line-height:1.82;font-size:.97rem;}
-.contact-desc strong{color:var(--text);}
-.contact-links{display:flex;flex-direction:column;gap:.8rem;}
-.contact-link{display:flex;align-items:center;gap:.9rem;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:.85rem 1.2rem;text-decoration:none;color:var(--text-muted);transition:all .25s;}
-.contact-link:hover{border-color:var(--accent);color:var(--text);transform:translateX(5px);box-shadow:0 4px 18px var(--glow2);}
-.cl-icon{font-size:1.35rem;flex-shrink:0;}
-.cl-type{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);display:block;}
-.cl-val{font-size:.88rem;}
-.avail-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:1.8rem;position:relative;overflow:hidden;}
-.avail-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-.avail-title{font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem;}
-.avail-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
-.avail-desc{font-size:.86rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.3rem;}
-.avail-desc strong{color:var(--text);}
-.avail-prefs{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.3rem;}
-.pref-row{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--text-muted);}
-.pref-row span:first-child{font-size:1rem;}
+/* ═══════════════════ PROJECTS ═══════════════════ */
+#projects { background: var(--bg2); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.3rem; }
+.project-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 15px; padding: 1.6rem; transition: all .3s; position: relative; overflow: hidden;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0; transition: opacity .3s;
+}
+.project-card:hover { border-color: rgba(99,130,255,.32); transform: translateY(-4px); box-shadow: 0 16px 44px rgba(99,130,255,.1); }
+.project-card:hover::before { opacity: 1; }
+.proj-head { display: flex; align-items: flex-start; gap: .85rem; margin-bottom: .9rem; }
+.proj-icon { font-size: 1.7rem; flex-shrink: 0; }
+.proj-name { font-family: var(--font-head); font-weight: 700; font-size: .97rem; color: var(--text); line-height: 1.2; margin-bottom: .2rem; }
+.proj-type { font-family: var(--font-mono); font-size: .6rem; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.proj-desc { font-size: .84rem; color: var(--text-muted); line-height: 1.7; margin-bottom: .85rem; }
+.proj-desc code { font-family: var(--font-mono); font-size: .72rem; color: var(--accent2); background: rgba(99,130,255,.07); padding: .04rem .28rem; border-radius: 3px; }
+.proj-impact { background: rgba(99,130,255,.05); border: 1px solid rgba(99,130,255,.12); border-radius: 7px; padding: .65rem .85rem; margin-bottom: .85rem; }
+.impact-label { font-family: var(--font-mono); font-size: .58rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .3rem; }
+.impact-item { font-size: .76rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: .38rem; margin-bottom: .22rem; }
+.impact-item::before { content: '→'; color: var(--accent); font-size: .68rem; flex-shrink: 0; margin-top: .1em; }
 
-/* ═══ FOOTER ═══ */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-text{font-family:var(--font-mono);font-size:.66rem;color:var(--text-dim);}
-.footer-text span{color:var(--accent);}
+/* ═══════════════════ ACHIEVEMENTS ═══════════════════ */
+#achievements { background: var(--bg); }
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .85rem; margin-bottom: 2.2rem; }
+.ach-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.3rem; text-align: center; transition: all .3s; position: relative; overflow: hidden;
+}
+.ach-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(99,130,255,.07), transparent 70%); pointer-events: none; }
+.ach-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 8px 26px var(--glow2); }
+.ach-num { font-family: var(--font-head); font-weight: 800; font-size: 1.9rem; color: var(--accent); display: block; letter-spacing: -.03em; }
+.ach-label { font-size: .76rem; color: var(--text-muted); margin-top: .28rem; line-height: 1.4; }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .85rem; }
+.cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: .85rem; transition: all .3s; }
+.cert-card:hover { border-color: var(--border2); transform: translateX(4px); }
+.cert-icon { font-size: 1.6rem; flex-shrink: 0; }
+.cert-name { font-weight: 600; font-size: .86rem; color: var(--text); }
+.cert-issuer { font-family: var(--font-mono); font-size: .62rem; color: var(--text-muted); margin-top: .1rem; }
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:960px){
-  nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
-  #hero{padding:6.5rem 1.5rem 2.5rem;}
-  section{padding:4rem 1.5rem;}
-  .about-layout,.skills-layout,.contact-inner{grid-template-columns:1fr;gap:2rem;}
-  .skill-bars-wrap{position:static;}
-  .tech-spec-grid{grid-template-columns:1fr;}
-  footer{padding:1.5rem;flex-direction:column;text-align:center;}
+/* ═══════════════════ CONTACT ═══════════════════ */
+#contact { background: var(--bg2); }
+.contact-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3.5rem; align-items: start; }
+.contact-desc p { color: var(--text-muted); margin-bottom: 1.6rem; line-height: 1.82; font-size: .96rem; }
+.contact-desc strong { color: var(--text); }
+.contact-links { display: flex; flex-direction: column; gap: .75rem; }
+.contact-link {
+  display: flex; align-items: center; gap: .85rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: .8rem 1.1rem;
+  text-decoration: none; color: var(--text-muted); transition: all .25s;
+}
+.contact-link:hover { border-color: var(--accent); color: var(--text); transform: translateX(4px); box-shadow: 0 4px 16px var(--glow2); }
+.cl-icon { font-size: 1.25rem; flex-shrink: 0; }
+.cl-type { font-family: var(--font-mono); font-size: .58rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); display: block; }
+.cl-val { font-size: .86rem; }
+
+.avail-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.6rem; position: relative; overflow: hidden;
+}
+.avail-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.avail-title { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: .45rem; display: flex; align-items: center; gap: .55rem; }
+.avail-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
+.avail-desc { font-size: .84rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.2rem; }
+.avail-desc strong { color: var(--text); }
+.avail-prefs { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.2rem; }
+.pref-row { display: flex; align-items: flex-start; gap: .55rem; font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+.pref-emoji { flex-shrink: 0; font-size: .9rem; }
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer {
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 1.3rem 3rem; display: flex;
+  justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem;
+}
+.footer-text { font-family: var(--font-mono); font-size: .62rem; color: var(--text-dim); }
+.footer-text span { color: var(--accent); }
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  nav { padding: .9rem 1.5rem; }
+  .nav-links { gap: 1.1rem; }
+  .nav-links a { font-size: .6rem; }
+
+  #hero { padding: 6rem 1.5rem 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-right { order: -1; } /* Stack chips above name on tablet */
+  h1.hero-name { font-size: clamp(2.8rem, 9vw, 4.5rem); }
+  .hero-desc { max-width: 100%; }
+
+  section { padding: 4rem 1.5rem; }
+  .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .tech-spec-grid { grid-template-columns: 1fr 1fr; }
+  .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .dot-wrap { position: static; }
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 1.2rem 1.5rem; flex-direction: column; text-align: center; }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  nav { padding: .85rem 1.2rem; }
+  .nav-links { gap: .8rem; }
+  .nav-links a { font-size: .58rem; letter-spacing: .06em; }
+
+  #hero { padding: 5.5rem 1.2rem 2.5rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-right { order: -1; }
+  h1.hero-name { font-size: clamp(2.6rem, 11vw, 3.5rem); }
+  .hero-stats { gap: 1.5rem; }
+  .stat-num { font-size: 1.7rem; }
+  .hero-ctas { flex-direction: column; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+
+  .pipeline-box { display: none; } /* Hide pipeline strip on small phones — too cramped */
+
+  section { padding: 3.5rem 1.2rem; }
+  .tech-spec-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .ach-grid { grid-template-columns: 1fr 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  footer { padding: 1rem 1.2rem; }
+  h2.section-title { font-size: 1.7rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ═══ NAV ═══ -->
 <nav id="main-nav">
   <a href="#" class="nav-logo">HM</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#architecture">Arch</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -301,159 +571,159 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
   </ul>
 </nav>
 
-<!-- ██████████ HERO ██████████ -->
+<!-- ═══ HERO ═══ -->
 <section id="hero">
-  <!-- Data pipeline background -->
   <div class="hero-grid"></div>
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-
-  <!-- Streaming data lines -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
   <div class="stream-lines">
-    <div class="stream-line sl-1"></div><div class="stream-line sl-2"></div>
-    <div class="stream-line sl-3"></div><div class="stream-line sl-4"></div>
-    <div class="stream-line sl-5"></div><div class="stream-line sl-6"></div>
-    <div class="stream-line sl-7"></div>
+    <div class="stream-line sl-1"></div>
+    <div class="stream-line sl-2"></div>
+    <div class="stream-line sl-3"></div>
+    <div class="stream-line sl-4"></div>
+    <div class="stream-line sl-5"></div>
   </div>
-
-  <!-- Floating data packets -->
   <div class="data-packet dp-1">SELECT * FROM curated.events<br/>WHERE dt = CURRENT_DATE</div>
-  <div class="data-packet dp-2">{"event":"RECORD_INGESTED","count":12847}</div>
+  <div class="data-packet dp-2">{"event":"RECORD_INGESTED",<br/>"count":12847}</div>
   <div class="data-packet dp-3">MERGE INTO iceberg.raw_layer<br/>USING staging ON id = id</div>
-  <div class="data-packet dp-4">glue.start_job_run(JobName=<br/>'etl-pipeline-v2')</div>
-  <div class="data-packet dp-5">GRANT SELECT ON TABLE<br/>curated.* TO role analyst_role</div>
 
-  <div class="hero-content">
-    <div class="hero-terminal-tag">
-      <span class="terminal-prompt">~/aws-data-engineer$</span>
-      <span>Senior Data Engineer · AWS · 4.5 yrs</span>
-      <span class="terminal-cursor"></span>
-    </div>
+  <div class="hero-inner">
 
-    <h1 class="hero-name">Himanshu<br/><span class="teal">Mundhada</span></h1>
+    <!-- LEFT — name, title, desc, stats, CTAs -->
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Open to opportunities · Senior Data Engineer
+      </div>
 
-    <p class="hero-title">Data Lake Architect · AWS Serverless · Apache Iceberg · Lake Formation · PySpark · Governance</p>
+      <h1 class="hero-name">
+        Himanshu<br/>
+        <span class="accent">Mundhada</span>
+      </h1>
 
-    <div class="hero-stack">
-      <span class="stack-chip hot">Lake Formation</span>
-      <span class="stack-chip hot">Apache Iceberg</span>
-      <span class="stack-chip hot">S3 Tables</span>
-      <span class="stack-chip">PySpark</span>
-      <span class="stack-chip">AWS Glue</span>
-      <span class="stack-chip">AWS Macie</span>
-      <span class="stack-chip">Clean Rooms</span>
-      <span class="stack-chip">Redshift</span>
-      <span class="stack-chip">Lambda</span>
-      <span class="stack-chip">Step Functions</span>
-      <span class="stack-chip">Kinesis</span>
-      <span class="stack-chip hot">AWS Kiro</span>
-      <span class="stack-chip">Terraform</span>
-      <span class="stack-chip">ADOT</span>
-    </div>
+      <p class="hero-subtitle">
+        Data Lake Architect · AWS Serverless · Apache Iceberg<br/>
+        Lake Formation · PySpark · Data Governance
+      </p>
 
-    <p class="hero-desc">
-      Building <strong>scalable, governance-first data lake platforms</strong> on AWS — from raw ingestion through exploratory transformation to curated analytical layers. Specialised in <strong>open table formats</strong> (Apache Iceberg, Amazon S3 Tables), <strong>fine-grained access control</strong> via Lake Formation, and <strong>event-driven serverless architectures</strong> processing 500K+ daily records with automated data quality at every layer.
-    </p>
+      <p class="hero-desc">
+        Building <strong>scalable, governance-first data lake platforms</strong> on AWS — from raw ingestion through exploratory transformation to curated analytical layers. Specialised in <strong>open table formats</strong> (Apache Iceberg, Amazon S3 Tables), <strong>fine-grained access control</strong> via Lake Formation, and <strong>event-driven serverless architectures</strong> processing 500K+ daily records with automated data quality at every layer.
+      </p>
 
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num"><span class="counter" data-target="500">0</span>K<em>+</em></div><div class="stat-label">Daily records ingested</div></div>
-      <div class="stat"><div class="stat-num"><span class="counter" data-target="40">0</span><em>%</em></div><div class="stat-label">Discrepancies reduced</div></div>
-      <div class="stat"><div class="stat-num"><span class="counter" data-target="35">0</span><em>%</em></div><div class="stat-label">Faster Glue execution</div></div>
-      <div class="stat"><div class="stat-num"><span class="counter" data-target="4">0</span>.<span class="counter" data-target="5">0</span><em> yrs</em></div><div class="stat-label">Experience</div></div>
-    </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="500">0</span>K<em>+</em></div>
+          <div class="stat-label">Daily records</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="40">0</span><em>%</em></div>
+          <div class="stat-label">Discrepancies reduced</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="35">0</span><em>%</em></div>
+          <div class="stat-label">Faster Glue jobs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4.5<em> yrs</em></div>
+          <div class="stat-label">Experience</div>
+        </div>
+      </div>
 
-    <div class="hero-ctas">
-      <a href="#architecture" class="btn-primary">View Architecture →</a>
-      <a href="#experience" class="btn-ghost">Work History</a>
-      <a href="https://www.linkedin.com/in/himanshu-mundhada-9362b5131" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
-    </div>
-
-    <!-- Live pipeline strip -->
-    <div class="hero-pipeline-strip">
-      <p class="pipeline-strip-label">Real-time data platform architecture</p>
-      <div class="pipeline-strip">
-        <div class="ps-node"><span class="ps-icon">🌊</span><div class="ps-name">Ingest</div><div class="ps-sub">Kinesis · SQS</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">λ</span><div class="ps-name">Trigger</div><div class="ps-sub">Lambda · SFN</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">⚙️</span><div class="ps-name">Transform</div><div class="ps-sub">Glue · PySpark</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">🗄️</span><div class="ps-name">RAW</div><div class="ps-sub">Iceberg · S3T</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">🔍</span><div class="ps-name">Explore</div><div class="ps-sub">Athena · Catalog</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">✨</span><div class="ps-name">Curated</div><div class="ps-sub">Redshift · DWH</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">🏛️</span><div class="ps-name">Govern</div><div class="ps-sub">Lake Formation</div></div>
-        <div class="ps-arrow">──▶</div>
-        <div class="ps-node"><span class="ps-icon">📊</span><div class="ps-name">Serve</div><div class="ps-sub">APIs · BI</div></div>
+      <div class="hero-ctas">
+        <a href="#architecture" class="btn-primary">View Architecture →</a>
+        <a href="#experience" class="btn-ghost">Work History</a>
+        <a href="https://www.linkedin.com/in/himanshu-mundhada-9362b5131" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
       </div>
     </div>
-  </div>
+
+    <!-- RIGHT — tech chips + pipeline -->
+    <div class="hero-right">
+      <div class="stack-box">
+        <div class="stack-box-label">Tech Stack</div>
+        <div class="stack-chips">
+          <span class="chip hot">AWS Lake Formation</span>
+          <span class="chip hot">Apache Iceberg</span>
+          <span class="chip hot">Amazon S3 Tables</span>
+          <span class="chip">AWS Glue</span>
+          <span class="chip">PySpark</span>
+          <span class="chip">Amazon Macie</span>
+          <span class="chip">AWS Clean Rooms</span>
+          <span class="chip">Amazon Redshift</span>
+          <span class="chip">AWS Lambda</span>
+          <span class="chip">Step Functions</span>
+          <span class="chip">Amazon Kinesis</span>
+          <span class="chip hot">AWS Kiro</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">ADOT</span>
+          <span class="chip">SageMaker Unified Studio</span>
+          <span class="chip">Amazon DynamoDB</span>
+          <span class="chip">Amazon Athena</span>
+          <span class="chip">AWS CloudFormation</span>
+        </div>
+      </div>
+
+      <div class="pipeline-box">
+        <div class="pipeline-box-label">Data platform architecture</div>
+        <div class="pipe-flow">
+          <div class="pipe-node"><span class="pipe-icon">🌊</span><div class="pipe-name">Ingest</div><div class="pipe-sub">Kinesis·SQS</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">λ</span><div class="pipe-name">Trigger</div><div class="pipe-sub">Lambda·SFN</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">⚙️</span><div class="pipe-name">Transform</div><div class="pipe-sub">Glue·Spark</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🗄️</span><div class="pipe-name">RAW</div><div class="pipe-sub">Iceberg·S3T</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🔍</span><div class="pipe-name">Explore</div><div class="pipe-sub">Athena</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">✨</span><div class="pipe-name">Curated</div><div class="pipe-sub">Redshift</div></div>
+          <div class="pipe-arrow">▶</div>
+          <div class="pipe-node"><span class="pipe-icon">🏛️</span><div class="pipe-name">Govern</div><div class="pipe-sub">LF·Macie</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end hero-inner -->
 </section>
 
-<!-- ██████████ ABOUT ██████████ -->
+<!-- ═══ ABOUT ═══ -->
 <section id="about">
   <div class="section-eyebrow"><span class="section-num">01.</span><div class="section-line"></div></div>
   <h2 class="section-title">Who I <span>Am</span></h2>
-
   <div class="about-layout">
+
     <div class="fade-up">
-      <div class="about-intro">
+      <div class="about-text">
         <p>I am a <strong>Senior Data Engineer</strong> specialising in AWS-native data lake architecture, open table formats, and governance-first data platform design. My work sits at the intersection of <strong>distributed data processing</strong>, <strong>cloud infrastructure</strong>, and <strong>enterprise data governance</strong> — building systems that are not just scalable but auditable, secure, and analytically powerful.</p>
-        <p>My architectural approach centres on the <strong>Medallion architecture</strong> — Raw (landing zone), Exploratory (curated transformations), and Curated (business-ready) layers — implemented on AWS using <code>Apache Iceberg</code>, <code>Amazon S3 Tables</code>, and <code>AWS Glue Data Catalog</code> with full schema evolution and ACID transaction support.</p>
-        <p>On the governance side, I implement <strong>AWS Lake Formation</strong> for fine-grained column/row-level access control, <strong>AWS Macie</strong> for automated PII detection and sensitive data classification, and <strong>AWS Clean Rooms</strong> for enabling secure cross-team analytics without data exposure.</p>
+        <p>My architectural approach centres on the <strong>Medallion Architecture</strong> — Raw (landing zone), Exploratory (curated transformations), and Curated (business-ready) layers — implemented on AWS using <code>Apache Iceberg</code>, <code>Amazon S3 Tables</code>, and <code>AWS Glue Data Catalog</code> with full schema evolution and ACID transaction support.</p>
+        <p>On the governance side, I implement <strong>AWS Lake Formation</strong> for fine-grained column/row-level access control, <strong>Amazon Macie</strong> for automated PII detection and sensitive data classification, and <strong>AWS Clean Rooms</strong> for enabling secure cross-team analytics without data exposure.</p>
         <p>I also drive <strong>AI enablement through AWS Kiro</strong> (AI-assisted data engineering and infrastructure automation), integrated observability via <strong>AWS Distro for OpenTelemetry (ADOT)</strong>, and participate in DevOps agent workflows for automated pipeline provisioning and deployments.</p>
       </div>
-
-      <div class="tech-spec-grid fade-up">
-        <div class="tech-spec-card">
-          <div class="ts-label">Primary Cloud</div>
-          <div class="ts-value">Amazon Web Services (AWS)</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Table Formats</div>
-          <div class="ts-value">Apache Iceberg · Amazon S3 Tables · Apache Parquet</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Processing Engine</div>
-          <div class="ts-value">PySpark · AWS Glue · Amazon Redshift</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Orchestration</div>
-          <div class="ts-value">AWS Step Functions · Lambda · EventBridge</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Governance Stack</div>
-          <div class="ts-value">Lake Formation · AWS Macie · Clean Rooms · ADOT</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">IaC & DevOps</div>
-          <div class="ts-value">Terraform · AWS CloudFormation · CI/CD · AWS Kiro</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Experience</div>
-          <div class="ts-value">4.5 Years · AWS + Azure certified</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="ts-label">Location</div>
-          <div class="ts-value">Indore, Madhya Pradesh, India</div>
-        </div>
+      <div class="tech-spec-grid">
+        <div class="ts-card"><div class="ts-label">Primary Cloud</div><div class="ts-value">Amazon Web Services (AWS)</div></div>
+        <div class="ts-card"><div class="ts-label">Table Formats</div><div class="ts-value">Apache Iceberg · Amazon S3 Tables · Parquet</div></div>
+        <div class="ts-card"><div class="ts-label">Processing Engine</div><div class="ts-value">PySpark · AWS Glue · Amazon Redshift</div></div>
+        <div class="ts-card"><div class="ts-label">Orchestration</div><div class="ts-value">AWS Step Functions · Lambda · EventBridge</div></div>
+        <div class="ts-card"><div class="ts-label">Governance Stack</div><div class="ts-value">Lake Formation · Macie · Clean Rooms · ADOT</div></div>
+        <div class="ts-card"><div class="ts-label">IaC & DevOps</div><div class="ts-value">Terraform · CloudFormation · CI/CD · AWS Kiro</div></div>
+        <div class="ts-card"><div class="ts-label">Experience</div><div class="ts-value">4.5 Years · AWS + Azure Certified</div></div>
+        <div class="ts-card"><div class="ts-label">Location</div><div class="ts-value">Indore, Madhya Pradesh, India</div></div>
       </div>
     </div>
 
-    <div class="capability-cards fade-up">
+    <div class="cap-cards fade-up">
       <div class="cap-card">
         <span class="cap-icon">🏗️</span>
         <div>
           <div class="cap-title">Medallion Data Lake Design</div>
-          <div class="cap-desc">End-to-end Raw → Exploratory → Curated layer architecture using <code>Apache Iceberg</code> and <code>S3 Tables</code> with ACID transactions, time-travel queries, and schema evolution on S3.</div>
+          <div class="cap-desc">End-to-end Raw → Exploratory → Curated layer architecture using <code>Apache Iceberg</code> and <code>Amazon S3 Tables</code> with ACID transactions, time-travel queries, and schema evolution on S3.</div>
         </div>
       </div>
       <div class="cap-card">
         <span class="cap-icon">🏛️</span>
         <div>
           <div class="cap-title">Governance & Access Control</div>
-          <div class="cap-desc"><code>Lake Formation</code> tag-based row/column-level security, <code>AWS Macie</code> automated PII classification, and <code>AWS Clean Rooms</code> for zero-exposure cross-team analytics.</div>
+          <div class="cap-desc"><code>Lake Formation</code> tag-based row/column-level security, <code>Amazon Macie</code> automated PII classification, and <code>AWS Clean Rooms</code> for zero-exposure cross-team analytics.</div>
         </div>
       </div>
       <div class="cap-card">
@@ -467,7 +737,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
         <span class="cap-icon">🔭</span>
         <div>
           <div class="cap-title">Observability & AI Enablement</div>
-          <div class="cap-desc">Full-stack pipeline observability using <code>ADOT</code> (AWS Distro for OpenTelemetry) and AI-assisted design via <code>AWS Kiro</code> — enabling intelligent infrastructure automation and proactive monitoring.</div>
+          <div class="cap-desc">Full-stack pipeline observability using <code>ADOT</code> (AWS Distro for OpenTelemetry) and AI-assisted design via <code>AWS Kiro</code> — intelligent infrastructure automation and proactive monitoring.</div>
         </div>
       </div>
       <div class="cap-card">
@@ -478,196 +748,195 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ██████████ ARCHITECTURE ██████████ -->
+<!-- ═══ ARCHITECTURE ═══ -->
 <section id="architecture">
   <div class="section-eyebrow"><span class="section-num">02.</span><div class="section-line"></div></div>
   <h2 class="section-title">Data Lake <span>Architecture</span></h2>
-
-  <div class="arch-svg-wrap fade-up">
+  <div class="arch-wrap fade-up">
     <svg id="arch-svg" viewBox="0 0 1020 480" xmlns="http://www.w3.org/2000/svg" style="font-family:'JetBrains Mono',monospace;">
       <defs>
         <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         <filter id="glows"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(0,210,200,0.7)"/></marker>
-        <path id="fp1" d="M 158,112 L 236,112"/>
-        <path id="fp2" d="M 330,112 L 406,112"/>
-        <path id="fp3" d="M 506,112 L 580,112"/>
-        <path id="fp4" d="M 674,112 L 748,112"/>
-        <path id="fp5" d="M 840,112 L 914,112"/>
-        <linearGradient id="gIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00403d"/><stop offset="100%" stop-color="#001f1e"/></linearGradient>
-        <linearGradient id="gPr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#003330"/><stop offset="100%" stop-color="#001a18"/></linearGradient>
-        <linearGradient id="gSt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#003835"/><stop offset="100%" stop-color="#001c1a"/></linearGradient>
-        <linearGradient id="gGov" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#002830"/><stop offset="100%" stop-color="#001218"/></linearGradient>
-        <linearGradient id="gServe" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#002e30"/><stop offset="100%" stop-color="#001518"/></linearGradient>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(99,130,255,0.7)"/></marker>
+        <path id="fp1" d="M 158,110 L 234,110"/>
+        <path id="fp2" d="M 328,110 L 404,110"/>
+        <path id="fp3" d="M 504,110 L 578,110"/>
+        <path id="fp4" d="M 672,110 L 746,110"/>
+        <path id="fp5" d="M 838,110 L 912,110"/>
+        <linearGradient id="gIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1f4a"/><stop offset="100%" stop-color="#0d1030"/></linearGradient>
+        <linearGradient id="gPr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#161c42"/><stop offset="100%" stop-color="#0c0f28"/></linearGradient>
+        <linearGradient id="gSt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#181e44"/><stop offset="100%" stop-color="#0d1030"/></linearGradient>
+        <linearGradient id="gGov" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#101536"/><stop offset="100%" stop-color="#080c22"/></linearGradient>
+        <linearGradient id="gSrv" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#141940"/><stop offset="100%" stop-color="#0a0d28"/></linearGradient>
       </defs>
 
       <!-- Zone bands -->
-      <rect x="12" y="12" width="198" height="158" rx="11" fill="rgba(0,210,200,.025)" stroke="rgba(0,210,200,.13)" stroke-width="1"/>
-      <text x="111" y="30" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="8.5" letter-spacing="2.5">INGESTION</text>
-      <rect x="222" y="12" width="190" height="158" rx="11" fill="rgba(0,210,200,.02)" stroke="rgba(0,210,200,.1)" stroke-width="1"/>
-      <text x="317" y="30" text-anchor="middle" fill="rgba(0,210,200,.32)" font-size="8.5" letter-spacing="2.5">PROCESSING</text>
-      <rect x="424" y="12" width="582" height="158" rx="11" fill="rgba(0,210,200,.02)" stroke="rgba(0,210,200,.1)" stroke-width="1"/>
-      <text x="715" y="30" text-anchor="middle" fill="rgba(0,210,200,.32)" font-size="8.5" letter-spacing="2.5">MEDALLION DATA LAKE LAYERS</text>
-      <rect x="222" y="190" width="582" height="140" rx="11" fill="rgba(0,50,55,.04)" stroke="rgba(0,210,200,.1)" stroke-width="1" stroke-dasharray="5,3"/>
-      <text x="513" y="208" text-anchor="middle" fill="rgba(0,210,200,.28)" font-size="8.5" letter-spacing="2.5">GOVERNANCE &amp; SECURITY PLANE</text>
+      <rect x="12" y="12" width="198" height="156" rx="11" fill="rgba(99,130,255,.03)" stroke="rgba(99,130,255,.15)" stroke-width="1"/>
+      <text x="111" y="30" text-anchor="middle" fill="rgba(99,130,255,.4)" font-size="8.5" letter-spacing="2.5">INGESTION</text>
+      <rect x="222" y="12" width="188" height="156" rx="11" fill="rgba(99,130,255,.02)" stroke="rgba(99,130,255,.1)" stroke-width="1"/>
+      <text x="316" y="30" text-anchor="middle" fill="rgba(99,130,255,.35)" font-size="8.5" letter-spacing="2.5">PROCESSING</text>
+      <rect x="422" y="12" width="584" height="156" rx="11" fill="rgba(99,130,255,.02)" stroke="rgba(99,130,255,.1)" stroke-width="1"/>
+      <text x="714" y="30" text-anchor="middle" fill="rgba(99,130,255,.35)" font-size="8.5" letter-spacing="2.5">MEDALLION DATA LAKE LAYERS</text>
+      <rect x="222" y="188" width="582" height="138" rx="11" fill="rgba(50,60,130,.04)" stroke="rgba(99,130,255,.1)" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="513" y="207" text-anchor="middle" fill="rgba(99,130,255,.3)" font-size="8.5" letter-spacing="2.5">GOVERNANCE &amp; SECURITY PLANE</text>
 
-      <!-- NODES row 1 -->
+      <!-- NODES -->
       <!-- Kinesis/SQS -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="28" y="48" width="128" height="116" rx="11" fill="url(#gIn)" stroke="rgba(0,210,200,.45)" stroke-width="1.5"/>
-        <text x="92" y="76" text-anchor="middle" font-size="21">🌊</text>
-        <text x="92" y="97" text-anchor="middle" fill="#00d2c8" font-size="9.5" font-weight="600">Amazon Kinesis</text>
-        <text x="92" y="111" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">Data Streams</text>
-        <text x="92" y="127" text-anchor="middle" fill="#00d2c8" font-size="9.5" font-weight="500">Amazon SQS</text>
-        <text x="92" y="141" text-anchor="middle" fill="rgba(0,210,200,.45)" font-size="7.5">Simple Queue Svc</text>
-        <text x="92" y="155" text-anchor="middle" fill="rgba(0,210,200,.3)" font-size="7">Amazon EventBridge</text>
+        <rect x="28" y="46" width="128" height="116" rx="11" fill="url(#gIn)" stroke="rgba(99,130,255,.45)" stroke-width="1.5"/>
+        <text x="92" y="74" text-anchor="middle" font-size="20">🌊</text>
+        <text x="92" y="95" text-anchor="middle" fill="#a5b4fc" font-size="9.5" font-weight="600">Amazon Kinesis</text>
+        <text x="92" y="109" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">Data Streams</text>
+        <text x="92" y="125" text-anchor="middle" fill="#a5b4fc" font-size="9.5" font-weight="500">Amazon SQS</text>
+        <text x="92" y="139" text-anchor="middle" fill="rgba(165,180,252,.45)" font-size="7.5">Simple Queue Svc</text>
+        <text x="92" y="153" text-anchor="middle" fill="rgba(165,180,252,.3)" font-size="7">Amazon EventBridge</text>
       </g>
-      <line x1="158" y1="108" x2="234" y2="108" stroke="rgba(0,210,200,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="158" y1="106" x2="232" y2="106" stroke="rgba(99,130,255,.55)" stroke-width="1.5" marker-end="url(#arr)"/>
 
-      <!-- Lambda/Step Functions -->
+      <!-- Lambda/SFN -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="240" y="48" width="88" height="116" rx="11" fill="url(#gPr)" stroke="rgba(0,210,200,.42)" stroke-width="1.5"/>
-        <text x="284" y="76" text-anchor="middle" font-size="19" fill="#00d2c8" font-weight="700">λ</text>
-        <text x="284" y="96" text-anchor="middle" fill="#00d2c8" font-size="9.5" font-weight="600">AWS Lambda</text>
-        <text x="284" y="111" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">Serverless Fn</text>
-        <text x="284" y="127" text-anchor="middle" fill="rgba(0,210,200,.42)" font-size="7.5">Step Functions</text>
-        <text x="284" y="141" text-anchor="middle" fill="rgba(0,210,200,.35)" font-size="7">Orchestration</text>
-        <text x="284" y="155" text-anchor="middle" fill="rgba(0,210,200,.28)" font-size="7">API Gateway</text>
+        <rect x="238" y="46" width="88" height="116" rx="11" fill="url(#gPr)" stroke="rgba(99,130,255,.42)" stroke-width="1.5"/>
+        <text x="282" y="74" text-anchor="middle" font-size="19" fill="#a5b4fc" font-weight="700">λ</text>
+        <text x="282" y="94" text-anchor="middle" fill="#a5b4fc" font-size="9.5" font-weight="600">AWS Lambda</text>
+        <text x="282" y="109" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">Serverless Fn</text>
+        <text x="282" y="125" text-anchor="middle" fill="rgba(165,180,252,.42)" font-size="7.5">Step Functions</text>
+        <text x="282" y="139" text-anchor="middle" fill="rgba(165,180,252,.35)" font-size="7">Orchestration</text>
+        <text x="282" y="153" text-anchor="middle" fill="rgba(165,180,252,.28)" font-size="7">API Gateway</text>
       </g>
-      <line x1="330" y1="108" x2="404" y2="108" stroke="rgba(0,210,200,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="328" y1="106" x2="402" y2="106" stroke="rgba(99,130,255,.55)" stroke-width="1.5" marker-end="url(#arr)"/>
 
-      <!-- Glue/PySpark -->
+      <!-- Glue -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="412" y="48" width="96" height="116" rx="11" fill="url(#gPr)" stroke="rgba(0,210,200,.48)" stroke-width="1.5"/>
-        <text x="460" y="76" text-anchor="middle" font-size="19">⚙️</text>
-        <text x="460" y="96" text-anchor="middle" fill="#00d2c8" font-size="9.5" font-weight="600">AWS Glue</text>
-        <text x="460" y="111" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">PySpark ETL</text>
-        <text x="460" y="126" text-anchor="middle" fill="rgba(0,210,200,.42)" font-size="7.5">Iceberg Writer</text>
-        <text x="460" y="141" text-anchor="middle" fill="rgba(0,210,200,.35)" font-size="7">Glue Data Catalog</text>
-        <text x="460" y="155" text-anchor="middle" fill="rgba(0,210,200,.28)" font-size="7">Schema Registry</text>
+        <rect x="410" y="46" width="92" height="116" rx="11" fill="url(#gPr)" stroke="rgba(99,130,255,.48)" stroke-width="1.5"/>
+        <text x="456" y="74" text-anchor="middle" font-size="19">⚙️</text>
+        <text x="456" y="94" text-anchor="middle" fill="#a5b4fc" font-size="9.5" font-weight="600">AWS Glue</text>
+        <text x="456" y="109" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">PySpark ETL</text>
+        <text x="456" y="124" text-anchor="middle" fill="rgba(165,180,252,.42)" font-size="7.5">Iceberg Writer</text>
+        <text x="456" y="139" text-anchor="middle" fill="rgba(165,180,252,.35)" font-size="7">Glue Data Catalog</text>
+        <text x="456" y="153" text-anchor="middle" fill="rgba(165,180,252,.28)" font-size="7">Schema Registry</text>
       </g>
-      <line x1="510" y1="108" x2="578" y2="108" stroke="rgba(0,210,200,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="504" y1="106" x2="576" y2="106" stroke="rgba(99,130,255,.55)" stroke-width="1.5" marker-end="url(#arr)"/>
 
-      <!-- RAW Layer -->
+      <!-- RAW -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="586" y="48" width="86" height="116" rx="11" fill="url(#gSt)" stroke="#00d2c8" stroke-width="2"/>
-        <text x="629" y="76" text-anchor="middle" font-size="19">🗄️</text>
-        <text x="629" y="95" text-anchor="middle" fill="#00ffee" font-size="10" font-weight="700">RAW</text>
-        <text x="629" y="111" text-anchor="middle" fill="rgba(0,210,200,.55)" font-size="7.5">Apache Iceberg</text>
-        <text x="629" y="126" text-anchor="middle" fill="rgba(0,210,200,.48)" font-size="7.5">Amazon S3 Tables</text>
-        <text x="629" y="141" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Parquet/ORC</text>
-        <text x="629" y="155" text-anchor="middle" fill="rgba(0,210,200,.28)" font-size="7">Time Travel</text>
+        <rect x="584" y="46" width="86" height="116" rx="11" fill="url(#gSt)" stroke="#6382ff" stroke-width="2"/>
+        <text x="627" y="74" text-anchor="middle" font-size="19">🗄️</text>
+        <text x="627" y="93" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="700">RAW</text>
+        <text x="627" y="109" text-anchor="middle" fill="rgba(165,180,252,.55)" font-size="7.5">Apache Iceberg</text>
+        <text x="627" y="124" text-anchor="middle" fill="rgba(165,180,252,.48)" font-size="7.5">Amazon S3 Tables</text>
+        <text x="627" y="139" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Parquet / ORC</text>
+        <text x="627" y="153" text-anchor="middle" fill="rgba(165,180,252,.28)" font-size="7">Time Travel</text>
       </g>
-      <line x1="674" y1="108" x2="746" y2="108" stroke="rgba(0,210,200,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="672" y1="106" x2="744" y2="106" stroke="rgba(99,130,255,.55)" stroke-width="1.5" marker-end="url(#arr)"/>
 
       <!-- EXPLORATORY -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="754" y="48" width="84" height="116" rx="11" fill="url(#gSt)" stroke="rgba(0,210,200,.72)" stroke-width="1.5"/>
-        <text x="796" y="76" text-anchor="middle" font-size="19">🔍</text>
-        <text x="796" y="95" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="700">EXPLORE</text>
-        <text x="796" y="111" text-anchor="middle" fill="rgba(0,210,200,.55)" font-size="7.5">Amazon Athena</text>
-        <text x="796" y="126" text-anchor="middle" fill="rgba(0,210,200,.45)" font-size="7">Glue Data Catalog</text>
-        <text x="796" y="141" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Schema Evolution</text>
-        <text x="796" y="155" text-anchor="middle" fill="rgba(0,210,200,.28)" font-size="7">Transforms</text>
+        <rect x="752" y="46" width="84" height="116" rx="11" fill="url(#gSt)" stroke="rgba(99,130,255,.72)" stroke-width="1.5"/>
+        <text x="794" y="74" text-anchor="middle" font-size="19">🔍</text>
+        <text x="794" y="93" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">EXPLORE</text>
+        <text x="794" y="109" text-anchor="middle" fill="rgba(165,180,252,.55)" font-size="7.5">Amazon Athena</text>
+        <text x="794" y="124" text-anchor="middle" fill="rgba(165,180,252,.45)" font-size="7">Glue Data Catalog</text>
+        <text x="794" y="139" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Schema Evolution</text>
+        <text x="794" y="153" text-anchor="middle" fill="rgba(165,180,252,.28)" font-size="7">Transforms</text>
       </g>
-      <line x1="840" y1="108" x2="912" y2="108" stroke="rgba(0,210,200,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="838" y1="106" x2="910" y2="106" stroke="rgba(99,130,255,.55)" stroke-width="1.5" marker-end="url(#arr)"/>
 
       <!-- CURATED -->
       <g class="aws-node" filter="url(#glows)">
-        <rect x="920" y="48" width="84" height="116" rx="11" fill="url(#gSt)" stroke="#00ffee" stroke-width="2"/>
-        <text x="962" y="76" text-anchor="middle" font-size="17">✨</text>
-        <text x="962" y="95" text-anchor="middle" fill="#00ffee" font-size="9" font-weight="700">CURATED</text>
-        <text x="962" y="111" text-anchor="middle" fill="rgba(0,210,200,.6)" font-size="7.5">Amazon Redshift</text>
-        <text x="962" y="126" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7">Data Warehouse</text>
-        <text x="962" y="141" text-anchor="middle" fill="rgba(0,210,200,.42)" font-size="7">Business-Ready</text>
-        <text x="962" y="155" text-anchor="middle" fill="rgba(0,210,200,.3)" font-size="7">Gold Layer</text>
+        <rect x="918" y="46" width="84" height="116" rx="11" fill="url(#gSt)" stroke="#a5b4fc" stroke-width="2"/>
+        <text x="960" y="74" text-anchor="middle" font-size="17">✨</text>
+        <text x="960" y="93" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">CURATED</text>
+        <text x="960" y="109" text-anchor="middle" fill="rgba(165,180,252,.6)" font-size="7.5">Amazon Redshift</text>
+        <text x="960" y="124" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7">Data Warehouse</text>
+        <text x="960" y="139" text-anchor="middle" fill="rgba(165,180,252,.42)" font-size="7">Business-Ready</text>
+        <text x="960" y="153" text-anchor="middle" fill="rgba(165,180,252,.3)" font-size="7">Gold Layer</text>
       </g>
 
-      <!-- GOVERNANCE NODES -->
+      <!-- GOVERNANCE -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="232" y="218" width="118" height="94" rx="11" fill="url(#gGov)" stroke="rgba(0,210,200,.52)" stroke-width="1.5"/>
-        <text x="291" y="248" text-anchor="middle" font-size="17">🏛️</text>
-        <text x="291" y="268" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="700">Lake Formation</text>
-        <text x="291" y="282" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">Fine-Grained ACL</text>
-        <text x="291" y="296" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Row/Col Security</text>
+        <rect x="232" y="216" width="116" height="92" rx="11" fill="url(#gGov)" stroke="rgba(99,130,255,.52)" stroke-width="1.5"/>
+        <text x="290" y="245" text-anchor="middle" font-size="17">🏛️</text>
+        <text x="290" y="265" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">Lake Formation</text>
+        <text x="290" y="279" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">Fine-Grained ACL</text>
+        <text x="290" y="293" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Row/Col Security</text>
       </g>
       <g class="aws-node" filter="url(#glow)">
-        <rect x="400" y="218" width="108" height="94" rx="11" fill="url(#gGov)" stroke="rgba(0,210,200,.45)" stroke-width="1.5"/>
-        <text x="454" y="248" text-anchor="middle" font-size="17">🔐</text>
-        <text x="454" y="268" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="700">Amazon Macie</text>
-        <text x="454" y="282" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">PII Detection</text>
-        <text x="454" y="296" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Data Classification</text>
+        <rect x="398" y="216" width="106" height="92" rx="11" fill="url(#gGov)" stroke="rgba(99,130,255,.45)" stroke-width="1.5"/>
+        <text x="451" y="245" text-anchor="middle" font-size="17">🔐</text>
+        <text x="451" y="265" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">Amazon Macie</text>
+        <text x="451" y="279" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">PII Detection</text>
+        <text x="451" y="293" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Data Classification</text>
       </g>
       <g class="aws-node" filter="url(#glow)">
-        <rect x="558" y="218" width="108" height="94" rx="11" fill="url(#gGov)" stroke="rgba(0,210,200,.45)" stroke-width="1.5"/>
-        <text x="612" y="248" text-anchor="middle" font-size="17">🤝</text>
-        <text x="612" y="268" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="700">Clean Rooms</text>
-        <text x="612" y="282" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">Secure Collab</text>
-        <text x="612" y="296" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Zero Data Exposure</text>
+        <rect x="554" y="216" width="106" height="92" rx="11" fill="url(#gGov)" stroke="rgba(99,130,255,.45)" stroke-width="1.5"/>
+        <text x="607" y="245" text-anchor="middle" font-size="17">🤝</text>
+        <text x="607" y="265" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">Clean Rooms</text>
+        <text x="607" y="279" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">Secure Collab</text>
+        <text x="607" y="293" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Zero Data Exposure</text>
       </g>
       <g class="aws-node" filter="url(#glow)">
-        <rect x="718" y="218" width="86" height="94" rx="11" fill="url(#gGov)" stroke="rgba(0,210,200,.42)" stroke-width="1.5"/>
-        <text x="761" y="248" text-anchor="middle" font-size="17">📡</text>
-        <text x="761" y="268" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="700">ADOT</text>
-        <text x="761" y="282" text-anchor="middle" fill="rgba(0,210,200,.5)" font-size="7.5">OpenTelemetry</text>
-        <text x="761" y="296" text-anchor="middle" fill="rgba(0,210,200,.38)" font-size="7">Observability</text>
+        <rect x="714" y="216" width="86" height="92" rx="11" fill="url(#gGov)" stroke="rgba(99,130,255,.42)" stroke-width="1.5"/>
+        <text x="757" y="245" text-anchor="middle" font-size="17">📡</text>
+        <text x="757" y="265" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">ADOT</text>
+        <text x="757" y="279" text-anchor="middle" fill="rgba(165,180,252,.5)" font-size="7.5">OpenTelemetry</text>
+        <text x="757" y="293" text-anchor="middle" fill="rgba(165,180,252,.38)" font-size="7">Observability</text>
       </g>
 
-      <!-- SERVE NODES -->
+      <!-- SERVE -->
       <g class="aws-node" filter="url(#glow)">
-        <rect x="355" y="382" width="100" height="78" rx="11" fill="url(#gServe)" stroke="rgba(0,210,200,.45)" stroke-width="1.5"/>
-        <text x="405" y="409" text-anchor="middle" font-size="16">🔌</text>
-        <text x="405" y="428" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="600">API Gateway</text>
-        <text x="405" y="442" text-anchor="middle" fill="rgba(0,210,200,.45)" font-size="7.5">Real-time APIs</text>
-        <text x="405" y="455" text-anchor="middle" fill="rgba(0,210,200,.3)" font-size="7">Downstream Svcs</text>
+        <rect x="355" y="382" width="100" height="76" rx="11" fill="url(#gSrv)" stroke="rgba(99,130,255,.45)" stroke-width="1.5"/>
+        <text x="405" y="408" text-anchor="middle" font-size="15">🔌</text>
+        <text x="405" y="426" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">API Gateway</text>
+        <text x="405" y="440" text-anchor="middle" fill="rgba(165,180,252,.45)" font-size="7.5">Real-time APIs</text>
+        <text x="405" y="452" text-anchor="middle" fill="rgba(165,180,252,.3)" font-size="7">Downstream Svcs</text>
       </g>
       <g class="aws-node" filter="url(#glow)">
-        <rect x="564" y="382" width="100" height="78" rx="11" fill="url(#gSt)" stroke="rgba(0,210,200,.5)" stroke-width="1.5"/>
-        <text x="614" y="409" text-anchor="middle" font-size="16">📊</text>
-        <text x="614" y="428" text-anchor="middle" fill="#00d2c8" font-size="9" font-weight="600">Analytics / BI</text>
-        <text x="614" y="442" text-anchor="middle" fill="rgba(0,210,200,.45)" font-size="7.5">Amazon QuickSight</text>
-        <text x="614" y="455" text-anchor="middle" fill="rgba(0,210,200,.3)" font-size="7">Dashboards</text>
+        <rect x="562" y="382" width="100" height="76" rx="11" fill="url(#gSt)" stroke="rgba(99,130,255,.5)" stroke-width="1.5"/>
+        <text x="612" y="408" text-anchor="middle" font-size="15">📊</text>
+        <text x="612" y="426" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">Analytics / BI</text>
+        <text x="612" y="440" text-anchor="middle" fill="rgba(165,180,252,.45)" font-size="7.5">Amazon QuickSight</text>
+        <text x="612" y="452" text-anchor="middle" fill="rgba(165,180,252,.3)" font-size="7">Dashboards</text>
       </g>
 
       <!-- Connectors -->
-      <line x1="289" y1="164" x2="289" y2="216" stroke="rgba(0,210,200,.2)" stroke-width="1" stroke-dasharray="4,3"/>
-      <line x1="960" y1="164" x2="960" y2="345" stroke="rgba(0,210,200,.15)" stroke-width="1" stroke-dasharray="4,3"/>
-      <line x1="614" y1="345" x2="960" y2="345" stroke="rgba(0,210,200,.12)" stroke-width="1" stroke-dasharray="4,3"/>
-      <line x1="614" y1="345" x2="614" y2="380" stroke="rgba(0,210,200,.2)" stroke-width="1" stroke-dasharray="4,3"/>
-      <line x1="405" y1="345" x2="405" y2="380" stroke="rgba(0,210,200,.18)" stroke-width="1" stroke-dasharray="4,3"/>
-      <line x1="405" y1="345" x2="614" y2="345" stroke="rgba(0,210,200,.12)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="290" y1="163" x2="290" y2="214" stroke="rgba(99,130,255,.2)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="958" y1="163" x2="958" y2="344" stroke="rgba(99,130,255,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="612" y1="344" x2="958" y2="344" stroke="rgba(99,130,255,.12)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="612" y1="344" x2="612" y2="380" stroke="rgba(99,130,255,.2)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="405" y1="344" x2="405" y2="380" stroke="rgba(99,130,255,.18)" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="405" y1="344" x2="612" y2="344" stroke="rgba(99,130,255,.12)" stroke-width="1" stroke-dasharray="3,3"/>
 
       <!-- Animated flow dots -->
-      <circle r="4.5" fill="#00ffee" filter="url(#glow)"><animateMotion dur="2s" repeatCount="indefinite" begin="0s"><mpath href="#fp1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0s"/></circle>
-      <circle r="2.5" fill="rgba(0,255,238,0.5)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.13s"><mpath href="#fp1"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2s" repeatCount="indefinite" begin="0.13s"/></circle>
-      <circle r="4.5" fill="#00ffee" filter="url(#glow)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.5s"><mpath href="#fp2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0.5s"/></circle>
-      <circle r="2.5" fill="rgba(0,255,238,0.5)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.63s"><mpath href="#fp2"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2s" repeatCount="indefinite" begin="0.63s"/></circle>
-      <circle r="4.5" fill="#00d2c8" filter="url(#glow)"><animateMotion dur="2s" repeatCount="indefinite" begin="1s"><mpath href="#fp3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="1s"/></circle>
-      <circle r="2.5" fill="rgba(0,210,200,0.5)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.13s"><mpath href="#fp3"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2s" repeatCount="indefinite" begin="1.13s"/></circle>
-      <circle r="4.5" fill="#00d2c8" filter="url(#glow)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.5s"><mpath href="#fp4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="1.5s"/></circle>
-      <circle r="2.5" fill="rgba(0,210,200,0.5)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.63s"><mpath href="#fp4"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2s" repeatCount="indefinite" begin="1.63s"/></circle>
-      <circle r="5.5" fill="#00ffee" filter="url(#glows)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#fp5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="2s"/></circle>
-      <circle r="3" fill="rgba(0,255,238,0.6)"><animateMotion dur="2s" repeatCount="indefinite" begin="2.13s"><mpath href="#fp5"/></animateMotion><animate attributeName="opacity" values="0;0.6;0.6;0" dur="2s" repeatCount="indefinite" begin="2.13s"/></circle>
+      <circle r="4.5" fill="#a5b4fc" filter="url(#glow)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0s"><mpath href="#fp1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0s"/></circle>
+      <circle r="2.5" fill="rgba(165,180,252,0.5)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.14s"><mpath href="#fp1"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2.2s" repeatCount="indefinite" begin="0.14s"/></circle>
+      <circle r="4.5" fill="#a5b4fc" filter="url(#glow)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.55s"><mpath href="#fp2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.55s"/></circle>
+      <circle r="2.5" fill="rgba(165,180,252,0.5)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.69s"><mpath href="#fp2"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2.2s" repeatCount="indefinite" begin="0.69s"/></circle>
+      <circle r="4.5" fill="#6382ff" filter="url(#glow)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s"><mpath href="#fp3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="1.1s"/></circle>
+      <circle r="2.5" fill="rgba(99,130,255,0.5)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.24s"><mpath href="#fp3"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2.2s" repeatCount="indefinite" begin="1.24s"/></circle>
+      <circle r="4.5" fill="#6382ff" filter="url(#glow)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.65s"><mpath href="#fp4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="1.65s"/></circle>
+      <circle r="2.5" fill="rgba(99,130,255,0.5)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.79s"><mpath href="#fp4"/></animateMotion><animate attributeName="opacity" values="0;0.5;0.5;0" dur="2.2s" repeatCount="indefinite" begin="1.79s"/></circle>
+      <circle r="5.5" fill="#a5b4fc" filter="url(#glows)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="2.2s"><mpath href="#fp5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="2.2s"/></circle>
+      <circle r="3" fill="rgba(165,180,252,0.6)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="2.34s"><mpath href="#fp5"/></animateMotion><animate attributeName="opacity" values="0;0.6;0.6;0" dur="2.2s" repeatCount="indefinite" begin="2.34s"/></circle>
 
       <!-- Legend -->
-      <circle cx="28" cy="468" r="4" fill="#00ffee" opacity=".8"/>
-      <text x="38" y="472" fill="rgba(0,210,200,.45)" font-size="8" letter-spacing=".5">Live data flow</text>
-      <rect x="140" y="463" width="14" height="8" rx="2" fill="none" stroke="rgba(0,210,200,.35)" stroke-dasharray="3,2"/>
-      <text x="160" y="472" fill="rgba(0,210,200,.45)" font-size="8" letter-spacing=".5">Governance / control plane</text>
+      <circle cx="28" cy="468" r="4" fill="#a5b4fc" opacity=".8"/>
+      <text x="38" y="472" fill="rgba(165,180,252,.45)" font-size="8" letter-spacing=".5">Live data flow</text>
+      <rect x="140" y="463" width="14" height="8" rx="2" fill="none" stroke="rgba(99,130,255,.35)" stroke-dasharray="3,2"/>
+      <text x="160" y="472" fill="rgba(165,180,252,.45)" font-size="8" letter-spacing=".5">Governance / control plane</text>
     </svg>
   </div>
 </section>
 
-<!-- ██████████ EXPERIENCE ██████████ -->
+<!-- ═══ EXPERIENCE ═══ -->
 <section id="experience">
   <div class="section-eyebrow"><span class="section-num">03.</span><div class="section-line"></div></div>
   <h2 class="section-title">Work <span>History</span></h2>
   <div class="exp-timeline">
 
-    <!-- Yash -->
     <div class="exp-item">
       <div class="exp-header">
         <div>
@@ -676,22 +945,21 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
         </div>
         <span class="exp-date">July 2025 – Present</span>
       </div>
-      <div class="exp-location">📍 Indore, India</div>
+      <div class="exp-loc">📍 Indore, India</div>
       <ul class="exp-bullets">
         <li>Designed and architected an <strong>end-to-end Medallion Data Lake framework</strong> — Raw landing zone, Exploratory transformation layer, and Curated business layer — using <code>Amazon S3</code>, <code>Apache Iceberg</code>, <code>Amazon S3 Tables</code>, and <code>AWS Glue</code> with ACID transaction support and full schema evolution.</li>
         <li>Implemented <strong>AWS Lake Formation</strong> for data governance and fine-grained access control — tag-based row/column-level security, cross-account access policies, and LF-Tags for dynamic data classification across the lake.</li>
-        <li>Worked with <strong>Apache Iceberg tables and Amazon S3 Tables</strong> as the primary open table format — enabling time-travel queries, snapshot isolation, partition evolution, and incremental reads for downstream consumers.</li>
-        <li>Integrated <strong>Amazon Macie</strong> for automated PII/sensitive data discovery and classification, and <strong>AWS Clean Rooms</strong> for enabling secure cross-team and cross-account analytics without raw data exposure.</li>
-        <li>Implemented <strong>AWS Distro for OpenTelemetry (ADOT)</strong> for end-to-end pipeline observability — metrics, traces, and logs exported to Amazon CloudWatch and X-Ray for proactive pipeline monitoring.</li>
-        <li>Contributed to <strong>SageMaker Unified Studio (SMuS)</strong> integration for unified data and ML workflows, and participated in <strong>DevOps agent</strong> automation for zero-touch infrastructure provisioning and deployment pipelines.</li>
-        <li>Drove <strong>AI enablement using AWS Kiro</strong> — AI-assisted data pipeline design, infrastructure code generation, and intelligent workflow automation.</li>
+        <li>Worked with <strong>Apache Iceberg and Amazon S3 Tables</strong> as the primary open table format — enabling time-travel queries, snapshot isolation, partition evolution, and incremental reads for downstream consumers.</li>
+        <li>Integrated <strong>Amazon Macie</strong> for automated PII/sensitive data discovery, and <strong>AWS Clean Rooms</strong> for secure cross-team and cross-account analytics without raw data exposure.</li>
+        <li>Implemented <strong>AWS Distro for OpenTelemetry (ADOT)</strong> for end-to-end pipeline observability — metrics, traces, and logs exported to Amazon CloudWatch and X-Ray for proactive monitoring.</li>
+        <li>Contributed to <strong>SageMaker Unified Studio (SMuS)</strong> integration for unified data and ML workflows, and participated in <strong>DevOps agent</strong> automation for zero-touch infrastructure provisioning.</li>
+        <li>Drove <strong>AI enablement using AWS Kiro</strong> — AI-assisted pipeline design, infrastructure code generation, and intelligent workflow automation.</li>
       </ul>
       <div class="exp-tags">
-        <span class="tag">Lake Formation</span><span class="tag">Apache Iceberg</span><span class="tag">S3 Tables</span><span class="tag">Amazon Macie</span><span class="tag">AWS Clean Rooms</span><span class="tag">AWS Kiro</span><span class="tag">ADOT</span><span class="tag">SMuS</span><span class="tag">PySpark</span><span class="tag">DevOps Agent</span><span class="tag">Medallion Architecture</span>
+        <span class="tag">Lake Formation</span><span class="tag">Apache Iceberg</span><span class="tag">S3 Tables</span><span class="tag">Amazon Macie</span><span class="tag">AWS Clean Rooms</span><span class="tag">AWS Kiro</span><span class="tag">ADOT</span><span class="tag">SageMaker Unified Studio</span><span class="tag">PySpark</span><span class="tag">DevOps Agent</span><span class="tag">Medallion Architecture</span>
       </div>
     </div>
 
-    <!-- Accenture Analyst -->
     <div class="exp-item">
       <div class="exp-header">
         <div>
@@ -700,12 +968,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
         </div>
         <span class="exp-date">Jan 2023 – June 2025</span>
       </div>
-      <div class="exp-location">📍 India</div>
+      <div class="exp-loc">📍 India</div>
       <ul class="exp-bullets">
-        <li>Designed and optimised <strong>event-driven data workflows</strong> using <code>AWS Step Functions</code>, <code>Amazon SQS</code>, <code>Amazon SNS</code>, <code>AWS Glue</code>, and <code>AWS Lambda</code> — enabling real-time ingestion and transformation for <strong>500K+ daily records</strong> with minimal latency.</li>
-        <li>Implemented <strong>partitioning and Snappy/ZSTD compression strategies</strong> in AWS Glue and Amazon S3 — significantly reducing storage costs and improving downstream query performance on Amazon Athena.</li>
-        <li>Automated <strong>data quality checks</strong> within AWS Glue ETL pipelines using Amazon CloudWatch Logs alarms and SNS notifications — reducing data discrepancies by <strong>40%</strong> and enabling proactive alerting.</li>
-        <li>Reduced Glue job execution time by <strong>35%</strong> through Apache Spark optimisations — broadcast joins, dynamic partition pruning, efficient DPU sizing, and caching strategies.</li>
+        <li>Designed and optimised <strong>event-driven data workflows</strong> using <code>AWS Step Functions</code>, <code>Amazon SQS</code>, <code>Amazon SNS</code>, <code>AWS Glue</code>, and <code>AWS Lambda</code> — real-time ingestion and transformation for <strong>500K+ daily records</strong>.</li>
+        <li>Implemented <strong>partitioning and compression strategies</strong> in AWS Glue and Amazon S3 — reducing storage costs and improving query performance on Amazon Athena significantly.</li>
+        <li>Automated <strong>data quality checks</strong> within Glue ETL pipelines via Amazon CloudWatch Logs alarms and SNS notifications — reducing data discrepancies by <strong>40%</strong>.</li>
+        <li>Reduced Glue job execution time by <strong>35%</strong> through Spark optimisations — broadcast joins, dynamic partition pruning, efficient DPU sizing, and caching strategies.</li>
         <li>Built and maintained <strong>AWS CloudFormation and Terraform IaC templates</strong> for repeatable, version-controlled pipeline deployments across environments.</li>
       </ul>
       <div class="exp-tags">
@@ -713,7 +981,6 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
       </div>
     </div>
 
-    <!-- Accenture Associate -->
     <div class="exp-item">
       <div class="exp-header">
         <div>
@@ -722,12 +989,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
         </div>
         <span class="exp-date">Sep 2021 – Dec 2022</span>
       </div>
-      <div class="exp-location">📍 India</div>
+      <div class="exp-loc">📍 India</div>
       <ul class="exp-bullets">
-        <li>Built <strong>near real-time data ingestion pipelines</strong> using <code>Amazon Kinesis Data Streams</code> and <code>AWS Lambda</code> — sub-second latency delivery to downstream analytical and operational systems.</li>
-        <li>Implemented <strong>Amazon DynamoDB data modelling best practices</strong> — Local Secondary Index (LSI) and Global Secondary Index (GSI) design, capacity planning, adaptive capacity, and optimised access patterns — improving read/write efficiency by <strong>50%</strong>.</li>
-        <li>Developed <strong>data lake foundations</strong> using <code>Amazon S3</code> and <code>AWS Glue Data Catalog</code> — partitioned storage layouts, schema evolution via Avro/Parquet, and crawler-based metadata management.</li>
-        <li>Built reusable <strong>Python/Boto3</strong> modules for S3 lifecycle management, presigned URL generation, and DynamoDB batch operations, enabling self-service tooling across teams.</li>
+        <li>Built <strong>near real-time data pipelines</strong> using <code>Amazon Kinesis Data Streams</code> and <code>AWS Lambda</code> — sub-second latency delivery to downstream analytical systems.</li>
+        <li>Implemented <strong>Amazon DynamoDB data modelling best practices</strong> — Local Secondary Index (LSI) and Global Secondary Index (GSI) design, capacity planning, and query optimisation — improving read/write efficiency by <strong>50%</strong>.</li>
+        <li>Developed <strong>data lake foundations</strong> using <code>Amazon S3</code> and <code>AWS Glue Data Catalog</code> — partitioned storage layouts, schema evolution, and crawler-based metadata management.</li>
+        <li>Built reusable <strong>Python/Boto3</strong> modules for S3 lifecycle management, presigned URL generation, and DynamoDB batch operations.</li>
       </ul>
       <div class="exp-tags">
         <span class="tag">Kinesis Data Streams</span><span class="tag">DynamoDB</span><span class="tag">Glue Data Catalog</span><span class="tag">Lambda</span><span class="tag">S3</span><span class="tag">IAM</span><span class="tag">Boto3</span><span class="tag">Python</span>
@@ -737,158 +1004,126 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
   </div>
 </section>
 
-<!-- ██████████ SKILLS ██████████ -->
+<!-- ═══ SKILLS ═══ -->
 <section id="skills">
   <div class="section-eyebrow"><span class="section-num">04.</span><div class="section-line"></div></div>
   <h2 class="section-title">Technical <span>Expertise</span></h2>
-
   <div class="skills-layout fade-up">
-    <div class="skills-groups">
-      <div class="skill-group">
-        <div class="sg-title">💻 Programming & Query Languages</div>
-        <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PySpark</span><span class="skill-tag">SQL</span><span class="skill-tag">Spark SQL</span><span class="skill-tag">Boto3</span><span class="skill-tag">HiveQL</span></div>
+    <div class="skill-groups">
+      <div class="sg">
+        <div class="sg-title">💻 Programming & Query</div>
+        <div class="sg-chips"><span class="sc">Python</span><span class="sc">PySpark</span><span class="sc">SQL</span><span class="sc">Spark SQL</span><span class="sc">Boto3</span><span class="sc">HiveQL</span></div>
       </div>
-      <div class="skill-group">
+      <div class="sg">
         <div class="sg-title">☁️ AWS Serverless & Compute</div>
-        <div class="skill-tags"><span class="skill-tag">AWS Lambda</span><span class="skill-tag">AWS Glue</span><span class="skill-tag">Amazon DynamoDB</span><span class="skill-tag">AWS Step Functions</span><span class="skill-tag">Amazon API Gateway</span><span class="skill-tag">AWS CloudFormation</span><span class="skill-tag">Amazon SQS</span><span class="skill-tag">Amazon SNS</span><span class="skill-tag">Amazon Kinesis</span><span class="skill-tag">Amazon EventBridge</span></div>
+        <div class="sg-chips"><span class="sc">AWS Lambda</span><span class="sc">AWS Glue</span><span class="sc">Amazon DynamoDB</span><span class="sc">AWS Step Functions</span><span class="sc">Amazon API Gateway</span><span class="sc">AWS CloudFormation</span><span class="sc">Amazon SQS</span><span class="sc">Amazon SNS</span><span class="sc">Amazon Kinesis</span><span class="sc">Amazon EventBridge</span></div>
       </div>
-      <div class="skill-group">
+      <div class="sg">
         <div class="sg-title">🏛️ Data Lake, Formats & Governance</div>
-        <div class="skill-tags"><span class="skill-tag">AWS Lake Formation</span><span class="skill-tag">Apache Iceberg</span><span class="skill-tag">Amazon S3 Tables</span><span class="skill-tag">AWS Glue Data Catalog</span><span class="skill-tag">Amazon Macie</span><span class="skill-tag">AWS Clean Rooms</span><span class="skill-tag">ADOT (OpenTelemetry)</span><span class="skill-tag">SageMaker Unified Studio</span></div>
+        <div class="sg-chips"><span class="sc">AWS Lake Formation</span><span class="sc">Apache Iceberg</span><span class="sc">Amazon S3 Tables</span><span class="sc">AWS Glue Data Catalog</span><span class="sc">Amazon Macie</span><span class="sc">AWS Clean Rooms</span><span class="sc">ADOT (OpenTelemetry)</span><span class="sc">SageMaker Unified Studio</span></div>
       </div>
-      <div class="skill-group">
+      <div class="sg">
         <div class="sg-title">📊 Storage, Analytics & Warehousing</div>
-        <div class="skill-tags"><span class="skill-tag">Amazon S3</span><span class="skill-tag">Amazon Redshift</span><span class="skill-tag">Amazon RDS</span><span class="skill-tag">Amazon Athena</span><span class="skill-tag">Amazon DynamoDB</span><span class="skill-tag">Apache Parquet</span><span class="skill-tag">Apache ORC</span></div>
+        <div class="sg-chips"><span class="sc">Amazon S3</span><span class="sc">Amazon Redshift</span><span class="sc">Amazon RDS</span><span class="sc">Amazon Athena</span><span class="sc">Amazon DynamoDB</span><span class="sc">Apache Parquet</span><span class="sc">Apache ORC</span></div>
       </div>
-      <div class="skill-group">
+      <div class="sg">
         <div class="sg-title">🔧 DevOps, IaC & Tooling</div>
-        <div class="skill-tags"><span class="skill-tag">Terraform</span><span class="skill-tag">CI/CD Pipelines</span><span class="skill-tag">Git</span><span class="skill-tag">Amazon CloudWatch</span><span class="skill-tag">AWS IAM</span><span class="skill-tag">AWS Kiro</span><span class="skill-tag">DevOps Agent</span><span class="skill-tag">Alteryx</span><span class="skill-tag">Azure DevOps</span></div>
+        <div class="sg-chips"><span class="sc">Terraform</span><span class="sc">CI/CD Pipelines</span><span class="sc">Git</span><span class="sc">Amazon CloudWatch</span><span class="sc">AWS IAM</span><span class="sc">AWS Kiro</span><span class="sc">DevOps Agent</span><span class="sc">Alteryx</span><span class="sc">Azure DevOps</span></div>
       </div>
     </div>
 
-    <!-- Skill bars -->
-    <div class="skill-bars-wrap">
-      <p class="sb-title">Proficiency by Domain</p>
-      <div id="skill-bars-container">
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">AWS Serverless</span><span class="sb-pct">94%</span></div><div class="sb-track"><div class="sb-fill" data-width="94"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">PySpark / AWS Glue</span><span class="sb-pct">92%</span></div><div class="sb-track"><div class="sb-fill" data-width="92"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Data Lake Architecture</span><span class="sb-pct">91%</span></div><div class="sb-track"><div class="sb-fill" data-width="91"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Apache Iceberg / S3T</span><span class="sb-pct">88%</span></div><div class="sb-track"><div class="sb-fill" data-width="88"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Python / Boto3</span><span class="sb-pct">90%</span></div><div class="sb-track"><div class="sb-fill" data-width="90"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Governance (LF/Macie)</span><span class="sb-pct">86%</span></div><div class="sb-track"><div class="sb-fill" data-width="86"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Amazon DynamoDB</span><span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-width="85"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Terraform / IaC</span><span class="sb-pct">80%</span></div><div class="sb-track"><div class="sb-fill" data-width="80"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">CI/CD & DevOps</span><span class="sb-pct">79%</span></div><div class="sb-track"><div class="sb-fill" data-width="79"></div></div></div>
-        <div class="skill-bar-item"><div class="sb-header"><span class="sb-name">Amazon Redshift</span><span class="sb-pct">78%</span></div><div class="sb-track"><div class="sb-fill" data-width="78"></div></div></div>
+    <!-- Dot Matrix -->
+    <div class="dot-wrap">
+      <p class="dot-title">Domain Coverage</p>
+      <div id="dot-matrix-container">
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">AWS Serverless</span><span class="dm-level">Expert</span></div><div class="dm-dots" data-filled="9" data-bright="9"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">PySpark / AWS Glue</span><span class="dm-level">Expert</span></div><div class="dm-dots" data-filled="9" data-bright="8"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Data Lake Architecture</span><span class="dm-level">Expert</span></div><div class="dm-dots" data-filled="9" data-bright="7"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Apache Iceberg / S3T</span><span class="dm-level">Advanced</span></div><div class="dm-dots" data-filled="8" data-bright="6"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Python / Boto3</span><span class="dm-level">Expert</span></div><div class="dm-dots" data-filled="9" data-bright="8"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Governance (LF / Macie)</span><span class="dm-level">Advanced</span></div><div class="dm-dots" data-filled="8" data-bright="6"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Amazon DynamoDB</span><span class="dm-level">Advanced</span></div><div class="dm-dots" data-filled="8" data-bright="5"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Terraform / IaC</span><span class="dm-level">Proficient</span></div><div class="dm-dots" data-filled="7" data-bright="4"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">CI/CD & DevOps</span><span class="dm-level">Proficient</span></div><div class="dm-dots" data-filled="7" data-bright="4"></div></div>
+        <div class="dm-item"><div class="dm-row"><span class="dm-name">Amazon Redshift</span><span class="dm-level">Proficient</span></div><div class="dm-dots" data-filled="7" data-bright="4"></div></div>
+      </div>
+      <div class="dm-legend">
+        <div class="dm-legend-item"><div class="dm-legend-dot" style="background:var(--accent2);box-shadow:0 0 5px rgba(165,180,252,.5);"></div>Expert</div>
+        <div class="dm-legend-item"><div class="dm-legend-dot" style="background:var(--accent);box-shadow:0 0 4px rgba(99,130,255,.4);"></div>Advanced</div>
+        <div class="dm-legend-item"><div class="dm-legend-dot" style="background:rgba(99,130,255,.04);border:1px solid rgba(99,130,255,.18);"></div>Scale</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ██████████ PROJECTS ██████████ -->
+<!-- ═══ PROJECTS ═══ -->
 <section id="projects">
   <div class="section-eyebrow"><span class="section-num">05.</span><div class="section-line"></div></div>
   <h2 class="section-title">Key <span>Projects</span></h2>
   <div class="projects-grid">
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">🏗️</span>
-        <div><div class="project-name">Enterprise Medallion Data Lake Platform</div><div class="project-type">Data Lake Architecture · AWS</div></div>
-      </div>
-      <p class="project-desc">Architected a production-grade <code>Medallion Architecture</code> with three distinct layers: a Raw landing zone using <code>Apache Iceberg</code> on <code>Amazon S3 Tables</code> for ACID transactions and time-travel; an Exploratory layer powered by <code>Amazon Athena</code> and <code>AWS Glue Data Catalog</code> for schema evolution; and a Curated layer in <code>Amazon Redshift</code> for business-ready aggregations.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">Full ACID support with Iceberg — enabling concurrent writes, snapshot isolation, and incremental reads</div>
-          <div class="impact-item">Schema evolution with zero pipeline downtime — additive and non-breaking changes handled transparently</div>
-          <div class="impact-item">Time-travel queries up to 90 days on raw layer for audit and reprocessing</div>
-        </div>
+      <div class="proj-head"><span class="proj-icon">🏗️</span><div><div class="proj-name">Enterprise Medallion Data Lake Platform</div><div class="proj-type">Data Lake Architecture · AWS</div></div></div>
+      <p class="proj-desc">Architected a production-grade <code>Medallion Architecture</code> with three layers: a Raw landing zone using <code>Apache Iceberg</code> on <code>Amazon S3 Tables</code> for ACID transactions; an Exploratory layer via <code>Amazon Athena</code> and <code>AWS Glue Data Catalog</code>; and a Curated layer in <code>Amazon Redshift</code> for business-ready aggregations.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">Full ACID support — concurrent writes, snapshot isolation, incremental reads</div>
+        <div class="impact-item">Schema evolution with zero pipeline downtime via Iceberg schema registry</div>
+        <div class="impact-item">Time-travel queries up to 90 days on raw layer for audit and reprocessing</div>
       </div>
       <div class="exp-tags"><span class="tag">Lake Formation</span><span class="tag">Apache Iceberg</span><span class="tag">S3 Tables</span><span class="tag">Glue</span><span class="tag">Athena</span><span class="tag">Redshift</span></div>
     </div>
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">🏛️</span>
-        <div><div class="project-name">Governance-First Data Platform</div><div class="project-type">Data Governance · Security · Compliance</div></div>
-      </div>
-      <p class="project-desc">Built a governance layer over the data lake using <code>AWS Lake Formation</code> for tag-based column/row-level access control and cross-account permissions. Integrated <code>Amazon Macie</code> for automated PII detection and data classification, and <code>AWS Clean Rooms</code> for enabling cross-team analytics with zero raw data exposure — critical for compliance in sensitive data domains.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">LF-Tag policies enforced dynamically without schema changes — sub-second access resolution</div>
-          <div class="impact-item">Macie scheduled scans auto-flagging PII across S3 buckets with SNS alerting pipeline</div>
-          <div class="impact-item">Clean Rooms queries ran on aggregated views — raw data never left source accounts</div>
-        </div>
+      <div class="proj-head"><span class="proj-icon">🏛️</span><div><div class="proj-name">Governance-First Data Platform</div><div class="proj-type">Data Governance · Security · Compliance</div></div></div>
+      <p class="proj-desc">Built a governance layer over the data lake using <code>AWS Lake Formation</code> for tag-based column/row-level access control and cross-account permissions. Integrated <code>Amazon Macie</code> for PII detection and <code>AWS Clean Rooms</code> for cross-team analytics with zero raw data exposure.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">LF-Tag policies enforced dynamically — sub-second access resolution without schema changes</div>
+        <div class="impact-item">Macie scheduled scans auto-flagging PII across S3 buckets with SNS alerting</div>
+        <div class="impact-item">Clean Rooms queries on aggregated views — raw data never left source accounts</div>
       </div>
       <div class="exp-tags"><span class="tag">Lake Formation</span><span class="tag">Amazon Macie</span><span class="tag">AWS Clean Rooms</span><span class="tag">IAM</span><span class="tag">LF-Tags</span></div>
     </div>
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">⚡</span>
-        <div><div class="project-name">Serverless Real-Time Integration Platform</div><div class="project-type">Event-Driven Architecture · Serverless</div></div>
-      </div>
-      <p class="project-desc">Designed and deployed a fully serverless integration platform using <code>Amazon Kinesis Data Streams</code> → <code>AWS Lambda</code> → <code>AWS Step Functions</code> → <code>Amazon DynamoDB</code>/<code>S3</code> for real-time data ingestion and transformation across multiple enterprise customers. Exposed real-time data via <code>Amazon API Gateway</code> REST and WebSocket APIs for downstream system consumption.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">500K+ daily records ingested with p99 latency under 800ms end-to-end</div>
-          <div class="impact-item">Zero-infrastructure provisioning — fully managed, auto-scaling serverless stack</div>
-          <div class="impact-item">Step Functions error handling with retry logic and DLQ reduced data loss to zero</div>
-        </div>
+      <div class="proj-head"><span class="proj-icon">⚡</span><div><div class="proj-name">Serverless Real-Time Integration Platform</div><div class="proj-type">Event-Driven Architecture · Serverless</div></div></div>
+      <p class="proj-desc">Designed a fully serverless platform using <code>Amazon Kinesis Data Streams</code> → <code>AWS Lambda</code> → <code>AWS Step Functions</code> → <code>Amazon DynamoDB</code> for real-time data integration across enterprise customers. Exposed via <code>Amazon API Gateway</code> REST and WebSocket APIs.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">500K+ daily records — p99 latency under 800ms end-to-end</div>
+        <div class="impact-item">Zero-infrastructure provisioning — fully managed, auto-scaling serverless stack</div>
+        <div class="impact-item">Step Functions error handling with retry logic and DLQ reduced data loss to zero</div>
       </div>
       <div class="exp-tags"><span class="tag">Kinesis</span><span class="tag">Lambda</span><span class="tag">Step Functions</span><span class="tag">API Gateway</span><span class="tag">DynamoDB</span></div>
     </div>
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">🔭</span>
-        <div><div class="project-name">Pipeline Observability with ADOT</div><div class="project-type">Observability · OpenTelemetry · Monitoring</div></div>
-      </div>
-      <p class="project-desc">Implemented full-stack data pipeline observability using <code>AWS Distro for OpenTelemetry (ADOT)</code> — collecting metrics, distributed traces, and structured logs from AWS Glue jobs, Lambda functions, and Step Functions. Traces exported to <code>AWS X-Ray</code> for latency analysis; metrics to <code>Amazon CloudWatch</code> dashboards with composite alarms and anomaly detection.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">End-to-end distributed tracing across Glue, Lambda, and Step Functions in a single trace</div>
-          <div class="impact-item">CloudWatch anomaly detection reduced MTTD (mean time to detect) by ~60%</div>
-          <div class="impact-item">Automated alarm-to-SNS-to-ticket routing for zero-missed SLA breaches</div>
-        </div>
+      <div class="proj-head"><span class="proj-icon">🔭</span><div><div class="proj-name">Pipeline Observability with ADOT</div><div class="proj-type">Observability · OpenTelemetry · Monitoring</div></div></div>
+      <p class="proj-desc">Implemented full-stack observability using <code>AWS Distro for OpenTelemetry (ADOT)</code> — collecting metrics, distributed traces, and structured logs from Glue jobs, Lambda, and Step Functions. Traces to <code>AWS X-Ray</code>; metrics to <code>Amazon CloudWatch</code> with anomaly detection.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">End-to-end distributed tracing across Glue, Lambda, Step Functions in a single trace</div>
+        <div class="impact-item">CloudWatch anomaly detection reduced mean time to detect (MTTD) by ~60%</div>
+        <div class="impact-item">Automated alarm-to-SNS-to-ticket routing for zero-missed SLA breaches</div>
       </div>
       <div class="exp-tags"><span class="tag">ADOT</span><span class="tag">AWS X-Ray</span><span class="tag">CloudWatch</span><span class="tag">OpenTelemetry</span><span class="tag">Lambda</span><span class="tag">Glue</span></div>
     </div>
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">🧹</span>
-        <div><div class="project-name">Automated Glue ETL & S3 Lifecycle Management</div><div class="project-type">Pipeline Automation · Cost Optimisation</div></div>
+      <div class="proj-head"><span class="proj-icon">🧹</span><div><div class="proj-name">Glue ETL Automation & S3 Lifecycle</div><div class="proj-type">Pipeline Automation · Cost Optimisation</div></div></div>
+      <p class="proj-desc">Automated large-scale <code>AWS Glue</code> ETL jobs with <code>Amazon S3 Lifecycle Policies</code> for automated tiered storage and bulk deletion. Integrated CI/CD via Azure DevOps and YAML pipelines for zero-touch deployments across environments.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">50+ man-hours/month saved — full pipeline automation via CI/CD</div>
+        <div class="impact-item">Glue DPU optimisation reduced job run costs by ~30% with same throughput</div>
+        <div class="impact-item">S3 Intelligent-Tiering cut storage cost on intermediate data by ~45%</div>
       </div>
-      <p class="project-desc">Automated large-scale <code>AWS Glue</code> ETL jobs for data manipulation, cleansing, and transformation — integrated with <code>Amazon S3 Lifecycle Policies</code> for automated tiered storage and bulk deletion workflows. Reduced manual intervention to near-zero and cut storage costs significantly by clearing GBs of expired intermediate datasets monthly.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">50+ man-hours/month saved — full pipeline automation via CI/CD with Azure DevOps and YAML</div>
-          <div class="impact-item">Spark Glue DPU optimisation reduced job run costs by ~30% with same throughput</div>
-          <div class="impact-item">S3 Intelligent-Tiering + lifecycle rules cut storage bill on intermediate data by ~45%</div>
-        </div>
-      </div>
-      <div class="exp-tags"><span class="tag">AWS Glue</span><span class="tag">PySpark</span><span class="tag">S3 Lifecycle</span><span class="tag">CI/CD</span><span class="tag">Azure DevOps</span><span class="tag">YAML</span></div>
+      <div class="exp-tags"><span class="tag">AWS Glue</span><span class="tag">PySpark</span><span class="tag">S3 Lifecycle</span><span class="tag">CI/CD</span><span class="tag">Azure DevOps</span></div>
     </div>
 
     <div class="project-card fade-up">
-      <div class="project-header">
-        <span class="project-icon">🤖</span>
-        <div><div class="project-name">AI-Enabled Pipeline Design with AWS Kiro</div><div class="project-type">AI Enablement · Infrastructure Automation</div></div>
-      </div>
-      <p class="project-desc">Leveraged <code>AWS Kiro</code> for AI-assisted data engineering workflows — generating <code>AWS CloudFormation</code> and <code>Terraform</code> templates from natural language specifications, auto-suggesting Glue job optimisations, and generating pipeline boilerplate. Combined with <strong>SageMaker Unified Studio (SMuS)</strong> for unified data + ML workflow management in a single governed environment.</p>
-      <div class="project-impact">
-        <div class="impact-label">Technical Outcomes</div>
-        <div class="impact-items">
-          <div class="impact-item">IaC generation time reduced from hours to minutes for standard pipeline patterns</div>
-          <div class="impact-item">SMuS unified data preparation and model training in a single governed workspace</div>
-          <div class="impact-item">DevOps agent integration enabled fully automated PR-to-deployment pipeline</div>
-        </div>
+      <div class="proj-head"><span class="proj-icon">🤖</span><div><div class="proj-name">AI-Enabled Engineering with AWS Kiro</div><div class="proj-type">AI Enablement · Infrastructure Automation</div></div></div>
+      <p class="proj-desc">Leveraged <code>AWS Kiro</code> for AI-assisted data engineering — generating <code>CloudFormation</code> and <code>Terraform</code> templates from natural language, auto-suggesting Glue optimisations. Combined with <strong>SageMaker Unified Studio (SMuS)</strong> for unified data and ML workflows in a single governed environment.</p>
+      <div class="proj-impact"><div class="impact-label">Technical Outcomes</div>
+        <div class="impact-item">IaC generation time reduced from hours to minutes for standard pipeline patterns</div>
+        <div class="impact-item">SMuS unified data preparation and model training in a single governed workspace</div>
+        <div class="impact-item">DevOps agent enabled fully automated PR-to-deployment pipeline</div>
       </div>
       <div class="exp-tags"><span class="tag">AWS Kiro</span><span class="tag">SageMaker Unified Studio</span><span class="tag">CloudFormation</span><span class="tag">Terraform</span><span class="tag">DevOps Agent</span></div>
     </div>
@@ -896,35 +1131,34 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
   </div>
 </section>
 
-<!-- ██████████ ACHIEVEMENTS ██████████ -->
+<!-- ═══ ACHIEVEMENTS ═══ -->
 <section id="achievements">
   <div class="section-eyebrow"><span class="section-num">06.</span><div class="section-line"></div></div>
   <h2 class="section-title">Impact & <span>Credentials</span></h2>
   <div class="ach-grid fade-up">
     <div class="ach-card"><span class="ach-num"><span class="counter" data-target="500">0</span>K+</span><div class="ach-label">Daily records via event-driven pipelines</div></div>
     <div class="ach-card"><span class="ach-num"><span class="counter" data-target="40">0</span>%</span><div class="ach-label">Reduction in data discrepancies</div></div>
-    <div class="ach-card"><span class="ach-num"><span class="counter" data-target="35">0</span>%</span><div class="ach-label">Faster Glue job execution via Spark tuning</div></div>
+    <div class="ach-card"><span class="ach-num"><span class="counter" data-target="35">0</span>%</span><div class="ach-label">Faster Glue execution via Spark tuning</div></div>
     <div class="ach-card"><span class="ach-num"><span class="counter" data-target="50">0</span>+</span><div class="ach-label">Man-hours saved monthly via automation</div></div>
-    <div class="ach-card"><span class="ach-num"><span class="counter" data-target="50">0</span>%</span><div class="ach-label">DynamoDB read/write efficiency improvement</div></div>
-    <div class="ach-card"><span class="ach-num"><span class="counter" data-target="4">0</span></span><div class="ach-label">AWS & Azure cloud certifications held</div></div>
+    <div class="ach-card"><span class="ach-num"><span class="counter" data-target="50">0</span>%</span><div class="ach-label">DynamoDB read/write efficiency gain</div></div>
+    <div class="ach-card"><span class="ach-num">4</span><div class="ach-label">AWS & Azure cloud certifications</div></div>
   </div>
-
   <div class="certs-grid fade-up">
     <div class="cert-card"><span class="cert-icon">🏅</span><div><div class="cert-name">AWS Certified Data Engineer – Associate</div><div class="cert-issuer">Amazon Web Services</div></div></div>
     <div class="cert-card"><span class="cert-icon">🥇</span><div><div class="cert-name">AWS Certified Developer – Associate</div><div class="cert-issuer">Amazon Web Services</div></div></div>
     <div class="cert-card"><span class="cert-icon">🎖️</span><div><div class="cert-name">Azure Developer Associate</div><div class="cert-issuer">Microsoft</div></div></div>
-    <div class="cert-card"><span class="cert-icon">☁️</span><div><div class="cert-name">Azure Fundamentals</div><div class="cert-issuer">Microsoft — AZ-900</div></div></div>
+    <div class="cert-card"><span class="cert-icon">☁️</span><div><div class="cert-name">Azure Fundamentals (AZ-900)</div><div class="cert-issuer">Microsoft</div></div></div>
   </div>
 </section>
 
-<!-- ██████████ CONTACT ██████████ -->
+<!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="section-eyebrow"><span class="section-num">07.</span><div class="section-line"></div></div>
   <h2 class="section-title">Let's <span>Connect</span></h2>
-  <div class="contact-inner">
+  <div class="contact-layout">
 
     <div class="contact-desc fade-up">
-      <p>Open to <strong>Senior Data Engineer, Data Architect, and Cloud Data Platform</strong> roles where I can contribute to building scalable, governed data lake infrastructure on AWS. Whether it's designing a Medallion architecture from scratch, modernising a legacy pipeline to open table formats, or establishing a governance-first data culture — let's talk.</p>
+      <p>Open to <strong>Senior Data Engineer, Data Architect, and Cloud Data Platform</strong> roles where I can contribute to building scalable, governed data lake infrastructure on AWS. Whether it's designing a Medallion architecture, modernising pipelines to open table formats, or establishing a governance-first data culture — let's talk.</p>
       <div class="contact-links">
         <a href="mailto:himanshumundhada16@gmail.com" class="contact-link">
           <span class="cl-icon">✉️</span>
@@ -943,12 +1177,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
 
     <div class="avail-card fade-up">
       <div class="avail-title"><span class="avail-dot"></span>Open to New Opportunities</div>
-      <p class="avail-desc">Based in <strong>Indore, Madhya Pradesh, India</strong>. Actively exploring roles that involve large-scale data lake design, governance engineering, and AWS data platform architecture. Open to a variety of work arrangements — I'm flexible and happy to discuss what works best for the right opportunity.</p>
+      <p class="avail-desc">Based in <strong>Indore, Madhya Pradesh, India</strong>. Actively exploring roles in large-scale data lake design, governance engineering, and AWS data platform architecture. Open to a range of work arrangements — happy to discuss what fits best.</p>
       <div class="avail-prefs">
-        <div class="pref-row"><span>🏢</span><span>On-site, hybrid, or remote — all considered</span></div>
-        <div class="pref-row"><span>🌏</span><span>India-based and open to relocation for the right role</span></div>
-        <div class="pref-row"><span>📋</span><span>Full-time employment or long-term consulting</span></div>
-        <div class="pref-row"><span>⚡</span><span>Preferred domains: Data Lake, Governance, AWS Serverless</span></div>
+        <div class="pref-row"><span class="pref-emoji">🏢</span><span>On-site, hybrid, or remote — all considered</span></div>
+        <div class="pref-row"><span class="pref-emoji">🌏</span><span>India-based and open to relocation for the right role</span></div>
+        <div class="pref-row"><span class="pref-emoji">📋</span><span>Full-time employment or long-term consulting</span></div>
+        <div class="pref-row"><span class="pref-emoji">⚡</span><span>Preferred: Data Lake, Governance, AWS Serverless</span></div>
       </div>
       <div class="exp-tags">
         <span class="tag">Data Lake Design</span><span class="tag">AWS Serverless</span><span class="tag">Governance</span><span class="tag">Apache Iceberg</span><span class="tag">PySpark</span>
@@ -964,13 +1198,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:1.3rem 3.
 </footer>
 
 <script>
-// Scroll reveal
+// ─ Scroll reveal
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+},{threshold:.08, rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fade-up,.exp-item').forEach(el=>io.observe(el));
 
-// Counters
+// ─ Counters
 const co = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting) return;
@@ -982,21 +1216,39 @@ const co = new IntersectionObserver(entries=>{
 },{threshold:.5});
 document.querySelectorAll('.counter').forEach(el=>co.observe(el));
 
-// Skill bars
-const barObs = new IntersectionObserver(entries=>{
+// ─ Dot matrix
+const dotObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting) return;
-    document.querySelectorAll('.sb-fill').forEach(bar=>{
-      const w = bar.dataset.width;
-      setTimeout(()=>{ bar.style.width = w + '%'; },100);
+    document.querySelectorAll('.dm-dots').forEach((container, i)=>{
+      const filled = parseInt(container.dataset.filled) || 0;
+      const bright = parseInt(container.dataset.bright) || 0;
+      const total = 10;
+      container.innerHTML = '';
+      for(let j=0;j<total;j++){
+        const dot = document.createElement('div');
+        dot.className = 'dm-dot';
+        if(j < filled){
+          if(j < bright) dot.classList.add('on','bright');
+          else dot.classList.add('on');
+          dot.style.opacity = '0';
+          dot.style.transform = 'scaleX(0.3)';
+          setTimeout(()=>{
+            dot.style.transition = 'opacity .25s, transform .25s, background .25s, box-shadow .25s';
+            dot.style.opacity = '1';
+            dot.style.transform = 'scaleX(1)';
+          }, i*60 + j*35);
+        }
+        container.appendChild(dot);
+      }
     });
-    barObs.unobserve(e.target);
+    dotObs.unobserve(e.target);
   });
 },{threshold:.3});
-const barsWrap = document.getElementById('skill-bars-container');
-if(barsWrap) barObs.observe(barsWrap);
+const dotContainer = document.getElementById('dot-matrix-container');
+if(dotContainer) dotObs.observe(dotContainer);
 
-// Active nav
+// ─ Active nav highlight
 const sections = document.querySelectorAll('section[id]');
 const links = document.querySelectorAll('.nav-links a');
 const navObs = new IntersectionObserver(entries=>{
